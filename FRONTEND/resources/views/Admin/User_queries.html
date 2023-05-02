@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin-User_queries</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/admin/common.css">
+    <!-- <link rel="stylesheet" href="css/common.css"> -->
+</head>
+
+
+
+<body class="bg-light">
+    <div class="container-fluid bg-dark text-light p-3 d-flex align-items-center justify-content-between sticky-top">
+        <h3 class="mb-0 h-font">
+            N5 HOTEL
+        </h3>
+        <a href="/admin/logout" class="btn btn-light btn-sm">LOG OUT</a>
+    </div>
+
+    <div class="col-lg-2 bg-dark border-top border-3 border-secondary" id="dashboard-menu">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid flex-lg-column align-items-lg-stretch">
+                <h4 class="mt-4 text-light">ADMIN PANEL</h4>
+                <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#adminDropdown" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse flex-column align-items-stretch mt-2" id="adminDropdown">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/admin/dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link text-white" href="/admin/rooms">Rooms</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link text-white" href="/admin/features_facilities">Features & Facilities</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link text-white" href="/admin/user-queries">User Queries</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/admin/carousel">Carousel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/admin/settings">Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid" id="main-content">
+        <div class="row">
+            <div class="col-lg-10 ms-auto p-4 overflow-hidden">
+                <h3 class="mb-4">USER QUERIES</h3>                
+                <!-- Carousel section -->
+
+                <div class="card border-0 shadow mb-4">
+                    <div class="card-body">
+
+                        <div class="text-end mb-4">
+                            <button  class="btn btn-dark rounded-pill shadow-none btn-sm" onclick="markAllAsRead()"><i class="bi bi-check-all"></i>Mark all read</button>
+                            <button class="btn btn-danger rounded-pill shadow-none btn-sm" onclick = "deleteAll()"><i class="bi bi-trash"></i>Delete all</button>
+                        </div>
+
+                       <div class="table-responsive-md" style="height:450px; overflow-y: scroll;">
+                        <table class="table table-hover border">
+                            <thead class="sticky-top">
+                              <tr class="bg-dark text-light">
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col" width="20%">Subject</th>
+                                <th scope="col" width="20%">Message</th>
+                                <th scope="col">Date</th>
+                                <th scope="col"  width="20%">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody id="show_user_queries">
+                            </tbody>
+                          </table>
+                       </div>
+                    </div>
+                </div>
+                
+
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        function get_user_queries() {
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET','http://localhost:8080/admin/user-queries',true);
+            xhr.setRequestHeader('Content-Type','application/json');
+            document.getElementById("show_user_queries").innerHTML = "";
+            xhr.onload = function()
+            {
+                let res = JSON.parse(this.responseText);
+                res.forEach(element => {
+                    let actionbtn = "";
+                    if(element.seen != 1)
+                    {
+                        // actionHtml = "<a href='?seen="+element.id+"' onclick = 'markAsRead(${element.id})' class='btn btn-sm rounded-pill btn-primary'>Mark as read</a>"; 
+                        actionbtn = "<button class='btn btn-sm rounded-pill btn-primary' onclick = 'markAsRead("+element.id+")'>Mark as read</button>";
+                    }
+                    actionbtn += "<button class='btn btn-sm rounded-pill btn-danger' onclick='deleteUq(" +element.id+ ")'>Delete</button>"; 
+                    htmlString = `
+                    <tr>
+                        <th>${element.id}</th>
+                        <td>${element.name}</td>
+                        <td>${element.email}</td>
+                        <td>${element.subject}</td>
+                        <td>${element.message}</td>
+                        <td>${element.date}</td>
+                        <td>${actionbtn}</td>
+                    <tr>
+                    `;
+                    document.getElementById("show_user_queries").innerHTML += htmlString;
+                });
+            }
+            xhr.send();
+        }
+        function markAsRead(val)
+        {
+            let data = {
+                id: val
+            }
+            let xhr = new XMLHttpRequest();
+            xhr.open("PUT","http://localhost:8080/admin/user-queries",true);
+            xhr.setRequestHeader("Content-Type","application/json");
+            xhr.onload = function()
+            {
+                let res = JSON.parse(this.responseText);
+                alert(res.message);
+                get_user_queries();
+            }
+            xhr.send(JSON.stringify(data));
+        }
+
+        function deleteUq(val)
+        {
+            let data = {
+                id: val
+            }
+            let xhr = new XMLHttpRequest();
+            xhr.open("DELETE","http://localhost:8080/admin/user-queries",true);
+            xhr.setRequestHeader("Content-Type","application/json");
+            xhr.onload = function()
+            {
+                let res = JSON.parse(this.responseText);
+                alert(res.message);
+                get_user_queries();
+            }
+            xhr.send(JSON.stringify(data));
+        }
+        function markAllAsRead(){
+            let xhr = new XMLHttpRequest();
+            xhr.open("PUT","http://localhost:8080/admin/user-queries/all",true);
+            xhr.onload = function()
+            {
+                let res = JSON.parse(this.responseText);
+                alert(res.message);
+                get_user_queries();
+            }
+            xhr.send();
+        }
+        function deleteAll()
+        {
+            let xhr = new XMLHttpRequest();
+            xhr.open("DELETE","http://localhost:8080/admin/user-queries/all",true);
+            xhr.setRequestHeader("Content-Type","application/json");
+            xhr.onload = function()
+            {
+                let res = JSON.parse(this.responseText);
+                alert(res.message);
+                get_user_queries();
+            }
+            xhr.send();
+        }
+        window.onload= function()
+        {
+            get_user_queries();
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+

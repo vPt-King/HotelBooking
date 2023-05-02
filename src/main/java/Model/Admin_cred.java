@@ -12,6 +12,13 @@ public class Admin_cred {
 		this.admin_pass = admin_pass;
 	}
 	
+	
+	public Admin_cred(String admin_name, String admin_pass) {
+		this.admin_name = admin_name;
+		this.admin_pass = admin_pass;
+	}
+
+
 	public Admin_cred() {
 	
 	}

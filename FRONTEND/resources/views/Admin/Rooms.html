@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin-Rooms</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/admin/common.css">
+    <!-- <link rel="stylesheet" href="css/common.css"> -->
+</head>
+
+
+
+<body class="bg-light">
+    <div class="container-fluid bg-dark text-light p-3 d-flex align-items-center justify-content-between sticky-top">
+        <h3 class="mb-0 h-font">
+            N5 HOTEL
+        </h3>
+        <a href="/admin/logout" class="btn btn-light btn-sm">LOG OUT</a>
+    </div>
+
+    <div class="col-lg-2 bg-dark border-top border-3 border-secondary" id="dashboard-menu">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid flex-lg-column align-items-lg-stretch">
+                <h4 class="mt-4 text-light">ADMIN PANEL</h4>
+                <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#adminDropdown" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse flex-column align-items-stretch mt-2" id="adminDropdown">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/admin/dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link text-white" href="/admin/rooms">Rooms</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link text-white" href="/admin/features_facilities">Features & Facilities</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link text-white" href="/admin/user-queries">User Queries</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/admin/carousel">Carousel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/admin/settings">Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid" id="main-content">
+        <div class="row">
+            <div class="col-lg-10 ms-auto p-4 overflow-hidden">
+                <h3 class="mb-4">Rooms</h3>
+                <!-- Carousel section -->
+
+                <div class="card border-0 shadow mb-4">
+                    <div class="card-body">
+                        <div class="text-end mb-4">
+                            <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#add-room">
+                                <i class="bi bi-plus-square"></i> Add
+                            </button>
+                        </div>
+
+
+                        <div class="table-responsive-lg" style="height:450px; overflow-y: scroll;">
+                            <table class="table table-hover border text-center">
+                                <thead>
+                                    <tr class="bg-dark text-light">
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Area</th>
+                                        <th scope="col">Guests</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="room-data">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Add room modal -->
+
+    <div class="modal fade" id="add-room" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <form id="add_room_form" autocomplete="off">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Room</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Name</label>
+                                <input type="text" id="name" name="name" class="form-control shadow-none" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Area</label>
+                                <input type="number" min="1" id="area" name="area" class="form-control shadow-none"
+                                    required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Price</label>
+                                <input type="number" min="1" id="price" name="price" class="form-control shadow-none"
+                                    required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Quantity</label>
+                                <input type="number" min="1" id="quantity" name="quantity"
+                                    class="form-control shadow-none" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Adult (Max.)</label>
+                                <input type="number" min="1" id="adult" name="adult" class="form-control shadow-none"
+                                    required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Children (Max.)</label>
+                                <input type="number" min="1" id="children" name="children"
+                                    class="form-control shadow-none" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="form-label fw-bold">Features</label>
+                                <div class="row" id="show_features_checkbox">
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="form-label fw-bold">Facilities</label>
+                                <div class="row" id="show_facilities_checkbox">
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="form-label fw-bold">Description</label>
+                                <textarea name="description" id="description" rows="4" class="form-control shadow-none"
+                                    required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn text-secondary shadow-none"
+                            data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn custom-bg text-white shadow-none">SUBMIT</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit room modal -->
+
+    <div class="modal fade" id="edit-room" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <form id="edit_room_form" autocomplete="off">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Room</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Name</label>
+                                <input type="text" id="edit_name" name="name" class="form-control shadow-none" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Area</label>
+                                <input type="number" min="1" id="edit_area" name="area" class="form-control shadow-none"
+                                    required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Price</label>
+                                <input type="number" min="1" id="edit_price" name="price"
+                                    class="form-control shadow-none" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Quantity</label>
+                                <input type="number" min="1" id="edit_quantity" name="quantity"
+                                    class="form-control shadow-none" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Adult (Max.)</label>
+                                <input type="number" min="1" id="edit_adult" name="adult"
+                                    class="form-control shadow-none" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Children (Max.)</label>
+                                <input type="number" min="1" id="edit_children" name="children"
+                                    class="form-control shadow-none" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="form-label fw-bold">Features</label>
+                                <div class="row" id="edit_show_features_checkbox">
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="form-label fw-bold">Facilities</label>
+                                <div class="row" id="edit_show_facilities_checkbox">
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="form-label fw-bold">Description</label>
+                                <textarea name="description" id="edit_description" rows="4"
+                                    class="form-control shadow-none" required></textarea>
+                            </div>
+                            <input type="hidden" name="room_id" id="edit_room_id">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button onclick="Reload()" type="reset" class="btn text-secondary shadow-none"
+                            data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn custom-bg text-white shadow-none">SUBMIT</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Manage room image modal  -->
+    <div class="modal fade" id="room-images" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="room-title"></h5>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="border-bottom border-3 pb-3 mb-3">
+                        <form id="add_image_form">
+                            <label class="form-label fw-bold">Add Image</label>
+                            <input type="file" id="room_image" name="image" accept=".jpg, .png, .webp, .jpeg"
+                                class="form-control shadow-none mb-3" required>
+                            <button class="btn custom-bg text-white shadow-none">ADD</button>
+                            <input type="hidden" name="room_id" id="room_id_hidden">
+                        </form>
+                    </div>
+                    <div class="table-responsive-lg" style="height:350px; overflow-y: scroll;">
+                        <table class="table table-hover border text-center">
+                            <thead>
+                                <tr class="bg-dark text-light sticky-top">
+                                    <th scope="col" width="60%">Image</th>
+                                    <th scope="col">Thumb</th>
+                                    <th scope="col">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody id="room-image-data">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function Reload() {
+            location.reload();
+        }
+        let add_room_form = document.getElementById("add_room_form");
+        add_room_form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            add_rooms();
+        })
+        function add_rooms() {
+            let name = document.getElementById("name").value;
+            let area = document.getElementById("area").value;
+            let price = document.getElementById("price").value;
+            let quantity = document.getElementById("quantity").value;
+            let adult = document.getElementById("adult").value;
+            let children = document.getElementById("children").value;
+            let description = document.getElementById("description").value;
+            const featuresCheckBoxes = document.querySelectorAll('input[type="checkbox"][name="features"]');
+            const featuresCheckedValues = [];
+            featuresCheckBoxes.forEach((checkbox) => {
+                if (checkbox.checked) {
+                    featuresCheckedValues.push(checkbox.value);
+                }
+            });
+            const facilityCheckBoxes = document.querySelectorAll('input[type="checkbox"][name="facilities"]');
+            const facilityCheckedValues = [];
+            facilityCheckBoxes.forEach((checkbox) => {
+                if (checkbox.checked) {
+                    facilityCheckedValues.push(checkbox.value);
+                }
+            });
+            let data = {
+                name: name,
+                area: area,
+                price: price,
+                quantity: quantity,
+                adult: adult,
+                children: children,
+                description: description,
+                features: featuresCheckedValues,
+                facilities: facilityCheckedValues
+            }
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8080/admin/rooms", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = function () {
+                var myModal = document.getElementById('add-room');
+                var modal = bootstrap.Modal.getInstance(myModal);
+                modal.hide();
+                let res = JSON.parse(this.responseText);
+                if (res.status === 1) {
+                    alert('success');
+                    location.reload();
+                }
+                else {
+                    alert("server error");
+                }
+            }
+            xhr.send(JSON.stringify(data));
+        }
+
+        function get_all_rooms() {
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:8080/admin/get-all-rooms", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = function () {
+                let res = JSON.parse(this.responseText);
+                document.getElementById("room-data").innerHTML = "";
+                res.forEach(room => {
+                    btnStatus = ``;
+                    if (room.status == 1) {
+                        btnStatus = "<button onclick='toggle_status(" + room.id + "," + 0 + ")' class='btn btn-dark btn-sm shadow-none'>active</button>";
+                    }
+                    else {
+                        btnStatus = "<button onclick='toggle_status(" + room.id + "," + 1 + ")'class='btn btn-warning btn-sm shadow-none'>inactive</button>";
+
+                    }
+                    htmlString = `
+                    <tr class="align-middle">
+                        <td>${room.id}</td>
+                        <td>${room.name}</td>
+                        <td>${room.area} sq.ft</td>
+                        <td>
+                            <span class="badge rounded-pill bg-light text-dark">
+                                Adult: ${room.adult}
+                            </span><br>
+                            <span class="badge rounded-pill bg-light text-dark">
+                                Children: ${room.children}
+                            </span>        
+                        </td>
+                        <td>$${room.price}</td>
+                        <td>${room.quantity}</td>
+                        <td>${btnStatus}</td>
+                        <td>
+                            <button type="button" onclick="edit_details(${room.id})" class="btn btn-primary shadow-none btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#edit-room">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button type="button" onclick="room_images(${room.id},'${room.name}')" class="btn btn-info shadow-none btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#room-images">
+                                <i class="bi bi-images"></i>
+                            </button>
+                            <button type="button" onclick="rem_room(${room.id})" class="btn btn-danger shadow-none btn-sm">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                    </tr>    
+                    `;
+                    document.getElementById("room-data").innerHTML += htmlString;
+                })
+            }
+            xhr.send();
+        }
+
+        let edit_room_form = document.getElementById("edit_room_form");
+        edit_room_form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            update_room();
+        })
+        function update_room() {
+            const featuresCheckBoxes = document.querySelectorAll('input[type="checkbox"][name="features_edit"]');
+            const featuresCheckedValues = [];
+            featuresCheckBoxes.forEach((checkbox) => {
+                if (checkbox.checked) {
+                    featuresCheckedValues.push(checkbox.value);
+                }
+            });
+            const facilityCheckBoxes = document.querySelectorAll('input[type="checkbox"][name="facilities_edit"]');
+            const facilityCheckedValues = [];
+            facilityCheckBoxes.forEach((checkbox) => {
+                if (checkbox.checked) {
+                    facilityCheckedValues.push(checkbox.value);
+                }
+            });
+            let data = {
+                id: document.getElementById("edit_room_id").value,
+                name: document.getElementById("edit_name").value,
+                area: document.getElementById("edit_area").value,
+                price: document.getElementById("edit_price").value,
+                quantity: document.getElementById("edit_quantity").value,
+                adult: document.getElementById("edit_adult").value,
+                children: document.getElementById("edit_children").value,
+                description: document.getElementById("edit_description").value,
+                features: featuresCheckedValues,
+                facilities: facilityCheckedValues
+            }
+            console.log(JSON.stringify(data));
+            let xhr = new XMLHttpRequest();
+            xhr.open("PUT", "http://localhost:8080/admin/update-room", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = function () {
+                let res = JSON.parse(this.responseText);
+                alert(res.message);
+            }
+            xhr.send(JSON.stringify(data));
+        }
+        function edit_details(id) {
+            let data = {
+                id: id,
+            }
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8080/admin/get-room-detail", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = function () {
+                let res = JSON.parse(this.responseText);
+                let features = res.features;
+                let arrayFeatures = [];
+                features.forEach(function (feature) {
+                    arrayFeatures.push(feature.id);
+                })
+                let facilities = res.facilities;
+                let arrayFacilities = [];
+                facilities.forEach(function (facility) {
+                    arrayFacilities.push(facility.id);
+                })
+
+                document.getElementById("edit_room_id").value = id;
+                document.getElementById("edit_name").value = res.name;
+                document.getElementById("edit_area").value = res.area;
+                document.getElementById("edit_price").value = res.price;
+                document.getElementById("edit_quantity").value = res.quantity;
+                document.getElementById("edit_adult").value = res.adult;
+                document.getElementById("edit_children").value = res.children;
+                document.getElementById("edit_description").value = res.description;
+                const featureboxs = document.querySelectorAll('input[type="checkbox"][name="features_edit"]');
+                featureboxs.forEach(fbox => {
+                    if (arrayFeatures.includes(parseInt(fbox.value))) {
+                        fbox.checked = true;
+                    }
+                })
+                console.log(arrayFacilities);
+                const facilityboxs = document.querySelectorAll('input[type="checkbox"][name="facilities_edit"]');
+                facilityboxs.forEach(fbox => {
+                    if (arrayFacilities.includes(parseInt(fbox.value))) {
+                        fbox.checked = true;
+                    }
+                })
+            }
+            xhr.send(JSON.stringify(data));
+        }
+        function toggle_status(id, val) {
+            let data = {
+                id: id,
+                name: "",
+                area: 0,
+                price: 0,
+                quantity: 0,
+                adult: 0,
+                children: 0,
+                description: "",
+                status: val
+            }
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8080/admin/change-status-room", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = function () {
+                location.reload();
+            }
+            xhr.send(JSON.stringify(data));
+        }
+
+        function get_features() {
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:8080/admin/features_facilities/features", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            document.getElementById("show_features_checkbox").innerHTML = "";
+            xhr.onload = function () {
+                resultArray = JSON.parse(this.responseText);
+                for (var i = 0; i < resultArray.length; i++) {
+                    var obj = resultArray[i];
+                    var htmlString = `
+                    <div class="col-md-3 mb-1">
+                                        <label >
+                                            <input type="checkbox" name="features" value="${obj.id}" class="form-check-input shadow-none">
+                                            ${obj.name}
+                                        </label>
+                    </div>
+                                    `;
+                    document.getElementById("show_features_checkbox").innerHTML += htmlString
+                }
+            }
+            xhr.send();
+        }
+
+        function get_facility() {
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:8080/admin/features_facilities/facility", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            document.getElementById("show_facilities_checkbox").innerHTML = "";
+            xhr.onload = function () {
+                resultArray = JSON.parse(this.responseText);
+                for (var i = 0; i < resultArray.length; i++) {
+                    var obj = resultArray[i];
+                    var htmlString = `
+                        <div class="col-md-3 mb-1">
+                                        <label >
+                                            <input type="checkbox" name="facilities" value="${obj.id}" class="form-check-input shadow-none">
+                                            ${obj.name}
+                                        </label>
+                    </div>
+                        `;
+                    // document.getElementById("edit_show_facilities_checkbox").innerHTML += htmlString
+                    document.getElementById("show_facilities_checkbox").innerHTML += htmlString
+                }
+            }
+            xhr.send();
+        }
+        function get_features1() {
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:8080/admin/features_facilities/features", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            document.getElementById("edit_show_features_checkbox").innerHTML = "";
+            xhr.onload = function () {
+                resultArray = JSON.parse(this.responseText);
+                for (var i = 0; i < resultArray.length; i++) {
+                    var obj = resultArray[i];
+                    var htmlString = `
+        <div class="col-md-3 mb-1">
+                            <label >
+                                <input type="checkbox" class="features_edit" name="features_edit" value="${obj.id}" class="form-check-input shadow-none">
+                                ${obj.name}
+                            </label>
+        </div>
+                        `;
+                    document.getElementById("edit_show_features_checkbox").innerHTML += htmlString
+                }
+            }
+            xhr.send();
+        }
+        function get_facility1() {
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:8080/admin/features_facilities/facility", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            document.getElementById("edit_show_facilities_checkbox").innerHTML = "";
+            xhr.onload = function () {
+                resultArray = JSON.parse(this.responseText);
+                for (var i = 0; i < resultArray.length; i++) {
+                    var obj = resultArray[i];
+                    var htmlString = `
+            <div class="col-md-3 mb-1">
+                            <label >
+                                <input type="checkbox" class="facilities_edit" name="facilities_edit" value="${obj.id}" class="form-check-input shadow-none">
+                                ${obj.name}
+                            </label>
+        </div>
+            `;
+                    document.getElementById("edit_show_facilities_checkbox").innerHTML += htmlString
+                }
+            }
+            xhr.send();
+        }
+
+        let add_image_form = document.getElementById('add_image_form');
+        add_image_form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            add_image();
+        })
+
+        function room_images(id,rname){
+            document.getElementById("room_id_hidden").value = id;
+            document.getElementById("room-title").innerHTML = rname;
+            document.getElementById("room_image").value="";
+            let data = {
+                id :  document.getElementById("room_id_hidden").value
+            }
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8080/admin/get-room-images", true);
+            xhr.setRequestHeader("content-type", "application/json");
+            xhr.onload =function()
+            {
+                let res = JSON.parse(this.responseText);
+                document.getElementById("room-image-data").innerHTML = "";
+                res.forEach(item => {
+                    let thumbBtn = "";
+                    
+                    if(parseInt(item.thumb) === 1)
+                    {
+                        thumbBtn = '<i class="bi bi-check-lg text-light bg-success px-2 py-1 rounded  fs-5"></i>'
+                    }
+                    else{
+                        thumbBtn = "<button onclick='thumb_image("+item.id+","+item.room_id +")' class='btn btn-secondary btn-sm shadow-none'><i class='bi bi-check-lg'></i></button>"
+                    }
+                    console.log(thumbBtn);
+                    let htmlString = `
+                    <tr class='align-middle'>
+                        <td><img src="http://localhost:8080/getimage/${item.image}" class="img-fluid"></td>
+                        <td>${thumbBtn}</td>
+                        <td>
+                            <button onclick='rem_image(${item.id},${item.room_id})' class='btn btn-danger btn-sm shadow-none'>
+                                <i class='bi bi-trash'></i>
+                            </button>
+                        </td>
+                    </tr>
+                    `;
+                    document.getElementById("room-image-data").innerHTML += htmlString;
+                });
+
+                
+            }
+            xhr.send(JSON.stringify(data));
+
+        }
+        function add_image() {
+            let room_image = document.getElementById('room_image');
+            let room_id = document.getElementById("room_id_hidden").value;
+            let data = new FormData();
+            data.append('room_id', room_id);
+            data.append('picture', room_image.files[0]);
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8080/admin/post-room-images", true);
+            xhr.onload = function () {
+                alert(JSON.parse(this.responseText).message);
+                room_images(room_id,document.getElementById("room-title").innerHTML);
+                add_image_form.reset();
+            }
+            xhr.send(data);
+        }
+        
+        function rem_image(id,room_id)
+        {
+            let data = {
+                id : id,
+                room_id: room_id
+            }
+            let xhr = new XMLHttpRequest();
+            xhr.open("DELETE", "http://localhost:8080/admin/delete-room-images",true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = function()
+            {
+                let res = JSON.parse(this.responseText);
+                alert(res.message);
+                room_images(id,document.getElementById("room-title"));
+            }
+            xhr.send(JSON.stringify(data));
+        }
+
+        function thumb_image(id,room_id)
+        {
+            let data = {
+                id : id,
+                room_id: room_id
+            }
+            let xhr = new XMLHttpRequest();
+            xhr.open("PUT", "http://localhost:8080/admin/change-thumb-room-images",true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = function()
+            {
+                let res = JSON.parse(this.responseText);
+                alert(res.message);
+                location.reload();
+            }
+            xhr.send(JSON.stringify(data));
+        }
+
+        function rem_room(room_id)
+        {
+            let data = {
+                id:room_id
+            }
+            let xhr = new XMLHttpRequest();
+            xhr.open("DELETE", "http://localhost:8080/admin/delete-room",true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = function()
+            {
+                let res = JSON.parse(this.responseText);
+                alert(res.message);
+                location.reload();
+            }
+            xhr.send(JSON.stringify(data));
+        }
+
+        window.onload = function () {
+            let room_id = document.getElementById("room_id_hidden");
+            get_features();
+            get_facility();
+            get_features1();
+            get_facility1();
+            get_all_rooms();
+        }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
