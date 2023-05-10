@@ -211,7 +211,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 my-5 mb-4 px-4">
-                <h2 class="fw-bold" id="room-name">Room name</h2>
+                <h2 class="fw-bold" id="room-name"></h2>
                 <div style="font-size: 14px;">
                     <a href="#" class="text-secondary text-decoration-none">HOME</a>
                     <span class="text-secondary">></span>
@@ -421,6 +421,7 @@
                     document.getElementById("show-room-carousel").innerHTML = "";
                     document.getElementById("show-room-price").innerHTML ="$" + res.room.price +" per night"; 
                     document.getElementById("show-room-features").innerHTML ="";
+                    document.getElementById("room-name").innerHTML += res.room.name;
                     document.getElementById("booking").setAttribute("href","/confirm-booking?id="+res.room.id);
                     let listFeatures = res.listFeatures;
                     listFeatures.forEach(feature => {
