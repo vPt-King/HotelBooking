@@ -26,7 +26,7 @@
         <h3 class="mb-0 h-font">
             N5 HOTEL
         </h3>
-        <a href="/admin/logout" class="btn btn-light btn-sm">LOG OUT</a>
+        <button onclick="logout('isAdmin')" class="btn btn-light btn-sm">LOG OUT</button>
     </div>
 
     <div class="col-lg-2 bg-dark border-top border-3 border-secondary" id="dashboard-menu">
@@ -42,6 +42,9 @@
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
                             <a class="nav-link text-white" href="/admin/dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/admin/booking">Booking</a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link text-white" href="/admin/rooms">Rooms</a>
@@ -378,7 +381,11 @@
             xhr.send(JSON.stringify(data));
         }
 
-
+        function logout(cookieName)
+        {
+                document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                window.location.href = "http://localhost:3000/admin";
+        }
         window.onload = function () {
             get_features();
             get_facility();

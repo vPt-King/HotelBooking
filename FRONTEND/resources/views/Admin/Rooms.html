@@ -26,7 +26,7 @@
         <h3 class="mb-0 h-font">
             N5 HOTEL
         </h3>
-        <a href="/admin/logout" class="btn btn-light btn-sm">LOG OUT</a>
+        <button onclick="logout('isAdmin')" class="btn btn-light btn-sm">LOG OUT</button>
     </div>
 
     <div class="col-lg-2 bg-dark border-top border-3 border-secondary" id="dashboard-menu">
@@ -42,6 +42,9 @@
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
                             <a class="nav-link text-white" href="/admin/dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/admin/booking">Booking</a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link text-white" href="/admin/rooms">Rooms</a>
@@ -343,7 +346,7 @@
 
         function get_all_rooms() {
             let xhr = new XMLHttpRequest();
-            xhr.open("GET", "http://localhost:8080/admin/get-all-rooms", true);
+            xhr.open("GET", "http://localhost:8080/admin/get-all-rooms-admin", true);
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.onload = function () {
                 let res = JSON.parse(this.responseText);
@@ -351,10 +354,10 @@
                 res.forEach(room => {
                     btnStatus = ``;
                     if (room.status == 1) {
-                        btnStatus = "<button onclick='toggle_status(" + room.id + "," + 0 + ")' class='btn btn-dark btn-sm shadow-none'>active</button>";
+                        btnStatus = "<button onclick='toggle_status(" + room.id + "," + 0 + ")' class='btn btn-dark btn-sm shadow-none'>available</button>";
                     }
                     else {
-                        btnStatus = "<button onclick='toggle_status(" + room.id + "," + 1 + ")'class='btn btn-warning btn-sm shadow-none'>inactive</button>";
+                        btnStatus = "<button onclick='toggle_status(" + room.id + "," + 1 + ")'class='btn btn-warning btn-sm shadow-none'>Booking</button>";
 
                     }
                     htmlString = `
@@ -714,7 +717,11 @@
             }
             xhr.send(JSON.stringify(data));
         }
-
+        function logout(cookieName)
+        {
+                document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                window.location.href = "http://localhost:3000/admin";
+        }
         window.onload = function () {
             let room_id = document.getElementById("room_id_hidden");
             get_features();

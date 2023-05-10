@@ -203,93 +203,79 @@
             </div>
         </div>
     </div>
-    <div class="my-5 px-4">
-        <h2 class="fw-bold h-font text-center">ABOUT US</h2>
-        <div class="h-line bg-dark"></div>
-        <p class="text-center mt-3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Temporibus incidunt odio quos <br> dolore commodi repudiandae
-            tenetur consequuuntur et similique asperiores.
-        </p>
-    </div>
+
+
+
+
+    <!-- content -->
     <div class="container">
-        <div class="row justify-content-between align-items-center">
-            <div class="col-lg-6 col-md-5 mb-4 order-lg-1 order-md-1 order-2">
-                <h3 class="mb-3">Loren ipsum dolor sit</h3>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit
-                    Onmis minima sapoente aliquam sed officia nostrum fuga?
-                </p>
-            </div>
-            <div class="col-lg-5 col-md-5 mb-4 order-lg-2 order-md-2 order-1">
-                <img src="images/about/about.jpg" class="w-100">
-            </div>
-        </div>
-    </div>
-    <div class="container mt-5">
         <div class="row">
-            <div class="col-lg-3 col-md-6 mb-4 px-4">
-                <div class="bg-white rounded shadow p-4 border-top border-4 text-center box">
-                    <img src="images/about/hotel.svg" width="70px">
-                    <h4 class="mt-3">100+ ROOMS</h4>
+            <div class="col-12 my-5 mb-4 px-4">
+                <h2 class="fw-bold" id="room-name">CONFIRM BOOKING</h2>
+                <div style="font-size: 14px;">
+                    <a href="#" class="text-secondary text-decoration-none">HOME</a>
+                    <span class="text-secondary">></span>
+                    <a href="/rooms" class="text-secondary text-decoration-none">ROOMS</a>
+                    <span class="text-secondary">></span>
+                    <a href="#" class="text-secondary text-decoration-none">CONFIRM</a>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4 px-4">
-                <div class="bg-white rounded shadow p-4 border-top border-4 text-center box">
-                    <img src="images/about/customers.svg" width="70px">
-                    <h4 class="mt-3">200+ CUSTOMERS</h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4 px-4">
-                <div class="bg-white rounded shadow p-4 border-top border-4 text-center box">
-                    <img src="images/about/rating.svg" width="70px">
-                    <h4 class="mt-3">150+ REVIEWS</h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4 px-4">
-                <div class="bg-white rounded shadow p-4 border-top border-4 text-center box">
-                    <img src="images/about/staff.svg" width="70px">
-                    <h4 class="mt-3">100+ STAFFS</h4>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <h3 class="my-5 fw-bold h-font text-center">MANAGEMENT TEAM</h3>
-
-    <div class="container px-4">
-        <div class="swiper mySwiper">
-            <div id="management_team_show" class="swiper-wrapper mb-5">
-                <!-- <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/IMG_17352.jpg" class="w-100">
-                    <h5 class="mt-2">Random Name</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/IMG_17352.jpg" class="w-100">
-                    <h5 class="mt-2">Random Name</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/IMG_17352.jpg" class="w-100">
-                    <h5 class="mt-2">Random Name</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/IMG_17352.jpg" class="w-100">
-                    <h5 class="mt-2">Random Name</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/IMG_17352.jpg" class="w-100">
-                    <h5 class="mt-2">Random Name</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/IMG_17352.jpg" class="w-100">
-                    <h5 class="mt-2">Random Name</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/IMG_17352.jpg" class="w-100">
-                    <h5 class="mt-2">Random Name</h5>
-                </div> -->
             </div>
-            <div class="swiper-pagination"></div>
+
+            <div class="col-lg-7 col-md-12 px-4 bg-dark">
+                <div class="card p-3 shadow-sm rounded" id="show-img-main">
+
+                </div>
+            </div>
+
+            <div class="col-lg-5 col-md-12 px-4">
+                <div class="card mb-4 border-0 shadow-sm rounded-3">
+                    <div class="card-body">
+                        <form method="POST" id="booking_form">
+                            <h6 class="mb-3">BOOKING DETAILS</h6>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="" class="form-label">Name</label>
+                                    <input name="name" id="user_name" type="text" class="form-control shadow-none"
+                                        required>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="" class="form-label">Phone number</label>
+                                    <input name="phone" id="user_phone" type="text" class="form-control shadow-none"
+                                        required>
+                                </div>
+
+                                <div class="col-md-12 mb-3">
+                                    <label for="" class="form-label">Address</label>
+                                    <input name="address" id="user_address" type="text" class="form-control shadow-none"
+                                        required>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="" class="form-label">Check-in</label>
+                                    <input name="checkin" type="date" id="checkin" class="form-control shadow-none"
+                                        required>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="" class="form-label">Check-out</label>
+                                    <input name="checkout" type="date" id="checkout" class="form-control shadow-none"
+                                        required>
+                                </div>
+                                <input type="hidden" id="user_id_confirm">
+                                <input type="hidden" id="room_id_confirm">
+                                <div class="col-12">
+                                    <button type="submit" name="pay" id="pay"
+                                        class="btn w-100 text-white custom-bg shadow-none mb-1">BOOKING NOW</button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <!-- footer -->
@@ -343,9 +329,6 @@
     </div>
     <br><br><br>
     <br><br><br>
-    <script src="../../js/api/About.js">
-
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -381,48 +364,81 @@
         });
     </script>
     <script>
-        var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 4,
-            spaceBetween: 40,
-            pagination: {
-                el: ".swiper-pagination",
-            },
-            breakpoints: {
-                320: {
-                    slidesPerView: 1,
-                },
-                640: {
-                    slidesPerView: 1,
-                },
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                },
+        let price = 0;
+        let booking_form = document.getElementById("booking_form");
+        booking_form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            booking();
+        })
+        function booking() {
+            let checkin = document.getElementById("checkin").value;
+            let checkout = document.getElementById("checkout").value;
+            if (checkin > checkout) {
+                alert("Check-in and check-out is not allowed");
             }
-        });
-    </script>
-    <script>
-        function get_members() {
+            else {
+                var date1 = new Date(checkin);
+                var date2 = new Date(checkout);
+                var differenceMs = date2.getTime() - date1.getTime();
+                var days = Math.floor(differenceMs / (1000 * 60 * 60 * 24));
+                if(days == 0){
+                    days = 1;
+                }
+                price = price * days;
+                let user_id = document.getElementById("user_id_confirm").value;
+                let room_id = document.getElementById("room_id_confirm").value;
+                let data = {
+                    user_id: user_id,
+                    room_id: room_id,
+                    checkin: checkin.toString(),
+                    checkout: checkout.toString(),
+                    price:price
+                }
+                console.log(data);
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "http://localhost:8080/booking-room", true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onload = function () {
+                    let res = JSON.parse(this.responseText);
+                    alert(res.mess);
+                    window.location.href = "http://localhost:3000/rooms"
+                }
+                xhr.send(JSON.stringify(data));
+            }
+
+        }
+
+        function get_room_feature_and_facilities_detail() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            let data = {
+                id: id
+            }
             let xhr = new XMLHttpRequest();
-            xhr.open("GET", "http://localhost:8080/admin/settings/management_team", true);
+            xhr.open("POST", "http://localhost:8080/get-room-feature-and-facilities-detail", true);
             xhr.setRequestHeader("Content-Type", "application/json");
-            let show = document.getElementById("management_team_show").innerHTML = "";
             xhr.onload = function () {
-                resultArray = JSON.parse(this.responseText);
-                for (var i = 0; i < resultArray.length; i++) {
-                    var obj = resultArray[i];
-                    var htmlString = `
-            <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                <img src="http://localhost:8080/getimage/${obj.picture}" class="w-100">
-                <h5 class="mt-2">${obj.name}</h5>
-            </div>
-            `;
-                    document.getElementById("management_team_show").innerHTML += htmlString
+                console.log(this.responseText)
+
+                if (this.responseText == "") {
+                    alert("No id specified");
+                    window.location.href = "https://localhost:8080/Error.html";
+                }
+                else {
+
+                    let res = JSON.parse(this.responseText);
+                    price = parseFloat(res.room.price);
+                    let listImages = res.listRoom_images;
+                    document.getElementById("show-img-main").innerHTML = `
+                    <img src="http://localhost:8080/getimage/${res.room_images.image}" class="img-fluid rounded mb-3">
+                    <h5>${res.room.name}</h5>
+                    <h6>$${res.room.price} per night</h6>
+                    `;
+                    document.getElementById("room_id_confirm").value = res.room.id;
                 }
             }
-            xhr.send();
+            xhr.send(JSON.stringify(data));
+
         }
 
         let login_form = document.getElementById("login_form");
@@ -444,7 +460,6 @@
                 password: password,
                 address: ""
             };
-            console.log(JSON.stringify(data));
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "http://localhost:8080/login", true);
             xhr.setRequestHeader("Content-Type", "application/json");
@@ -511,7 +526,6 @@
             register();
         });
         function register() {
-
             if (register_form.elements['pass'].value != register_form.elements['cpass'].value) {
                 alert("Your password confirmation is incorrect");
             }
@@ -525,8 +539,6 @@
                 data.append('identification', register_form.elements['identification'].value);
                 data.append('dob', register_form.elements['dob'].value);
                 data.append('pass', register_form.elements['pass'].value);
-                console.log(data);
-                console.log("here");
                 let xhr = new XMLHttpRequest();
                 xhr.open("POST", "http://localhost:8080/register", true);
 
@@ -544,9 +556,44 @@
                 xhr.send(data);
             }
         }
+        function getCookieValue(cookieName) {
+            var name = cookieName + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var cookieArray = decodedCookie.split(';');
+
+            for (var i = 0; i < cookieArray.length; i++) {
+                var cookie = cookieArray[i].trim();
+                if (cookie.indexOf(name) === 0) {
+                    return cookie.substring(name.length);
+                }
+            }
+
+            return "";
+        }
+        function get_user_confirmed() {
+            var email = getCookieValue("isUser");
+            data = {
+                email: email
+            }
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8080/get-user-by-gmail", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = function () {
+                let res = JSON.parse(this.responseText);
+                console.log(res)
+                document.getElementById("user_name").value = res.name;
+                document.getElementById("user_phone").value = res.phone;
+                document.getElementById("user_address").value = res.address;
+                document.getElementById("user_id_confirm").value = res.id;
+            }
+
+            xhr.send(JSON.stringify(data));
+        }
+
         window.onload = function () {
+            get_user_confirmed();
             check_login();
-            get_members();
+            get_room_feature_and_facilities_detail();
         }
     </script>
 </body>

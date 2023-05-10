@@ -58,7 +58,7 @@ public class RoomsDAO {
 	{
 		List<Rooms> list = new ArrayList<>();
 		Connection a=DBconnect.getJDBCConnection();
-		String q = "select * from rooms where removed = 0";
+		String q = "select * from rooms where removed = 0 and status = 1";
 		try {
 			PreparedStatement ps = a.prepareStatement(q);
 			ResultSet rs = ps.executeQuery();

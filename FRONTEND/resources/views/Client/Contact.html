@@ -62,9 +62,9 @@
 
 
                 </ul>
-                <div class="d-flex">
+                <div class="d-flex" id="show-button">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-2" data-bs-toggle="modal"
+                    <!-- <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-2" data-bs-toggle="modal"
                         data-bs-target="#loginModal">
                         Login
                     </button>
@@ -72,6 +72,11 @@
                         data-bs-target="#registerModal">
                         Register
                     </button>
+
+                    <button type="button" class="btn btn-outline-dark shadow-none " data-bs-toggle="modal"
+                        data-bs-target="#registerModal">
+                        Register
+                    </button> -->
                 </div>
             </div>
         </div>
@@ -82,7 +87,7 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form>
+                <form method="POST" id="login_form">
                     <div class="modal-header">
                         <h5 class="modal-title d-flex align-items-center">
                             <i class="bi bi-person-circle fs-3 me-2"></i> User Login
@@ -93,17 +98,16 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Email address</label>
-                            <input type="email" class="form-control shadow-none">
+                            <input id="user_email" type="email" class="form-control shadow-none">
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label">Password</label>
-                            <input type="password" class="form-control shadow-none">
+                            <input id="user_password" type="password" class="form-control shadow-none">
                         </div>
 
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <button type="submit" class="btn btn-dark shadow-none">LOGIN</button>
-                            <a href="javascript: void(0)" class="text-secondary text-decoration-none">Fogot pasword</a>
                         </div>
                     </div>
 
@@ -118,7 +122,7 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <form>
+                <form id="register-form">
                     <div class="modal-header">
                         <h5 class="modal-title d-flex align-items-center">
                             <i class="bi bi-person-lines-fill fs-3 me-2"></i> User Registration
@@ -137,39 +141,42 @@
                             <div class="row">
                                 <div class="col-md-6 ps-0 mb-3">
                                     <label class="form-label">Name</label>
-                                    <input type="text" class="form-control shadow-none">
+                                    <input name="name" type="text" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 p-0 mb-3">
                                     <label class="form-label">Email</label>
-                                    <input type="email" class="form-control shadow-none">
+                                    <input name="email" type="email" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 ps-0 mb-3">
                                     <label class="form-label">Phone number</label>
-                                    <input type="number" class="form-control shadow-none">
+                                    <input name="phone" type="number" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 p-0 mb-3">
                                     <label class="form-label">Picture</label>
-                                    <input type="file" class="form-control shadow-none">
+                                    <input name="profile" type="file" accept=".jpg, .jpeg, .png, .webp"
+                                        class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-12 p-0 mb-3">
                                     <label class="form-label">Address</label>
-                                    <textarea class="form-control shadow-none" rows="1"></textarea>
+                                    <textarea name="address" class="form-control shadow-none" rows="1"
+                                        required></textarea>
                                 </div>
                                 <div class="col-md-6 ps-0 mb-3">
                                     <label class="form-label">Identification</label>
-                                    <input type="number" class="form-control shadow-none">
+                                    <input name="identification" type="number" class="form-control shadow-none"
+                                        required>
                                 </div>
                                 <div class="col-md-6 p-0 mb-3">
                                     <label class="form-label">Date of birth</label>
-                                    <input type="date" class="form-control shadow-none">
+                                    <input name="dob" type="date" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 ps-0 mb-3">
                                     <label class="form-label">Password</label>
-                                    <input type="password" class="form-control shadow-none">
+                                    <input name="pass" type="password" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 p-0 mb-3">
                                     <label class="form-label">Confirm password</label>
-                                    <input type="password" class="form-control shadow-none">
+                                    <input name="cpass" type="password" class="form-control shadow-none" required>
                                 </div>
                             </div>
 
@@ -381,6 +388,129 @@
                 alert(res.message);
             }
             xhr.send(JSON.stringify(data));
+        }
+        let login_form = document.getElementById("login_form");
+        login_form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            login();
+        });
+        function login() {
+            let email = document.getElementById("user_email").value;
+            let password = document.getElementById("user_password").value;
+            data = {
+                id: "",
+                name: "",
+                email: email,
+                image: "",
+                phone: "",
+                identification: "",
+                dob: "",
+                password: password,
+                address: ""
+            };
+            console.log(JSON.stringify(data));
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8080/login", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onload = function () {
+                let res = JSON.parse(this.responseText);
+                if(res.status == 1)
+                {
+                    document.cookie = "isUser="+email+";max-age=86400;path=/";
+                    location.reload();
+                }
+                alert(res.mess);
+            }
+            xhr.send(JSON.stringify(data));
+        }
+        
+        function checkCookie(cookieName) {
+            var cookies = document.cookie.split(';'); // Get all cookies as an array
+
+            // Loop through the cookies to find the desired one
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim(); // Remove leading/trailing whitespace
+
+                // Check if the cookie starts with the desired name
+                if (cookie.indexOf(cookieName + '=') === 0) {
+                    return true; // Cookie exists
+                }
+            }
+
+            return false; // Cookie does not exist
+        }
+        function check_login() {
+            var cookieExists = checkCookie('isUser');
+            document.getElementById("show-button").innerHTML = "";
+            console.log(cookieExists);
+            if (cookieExists) {
+                document.getElementById("show-button").innerHTML += `
+                    <button type="button" class="btn btn-outline-dark shadow-none " onclick="logout('isUser')">
+                        Logout
+                    </button>
+                    `;
+            }
+            else {
+                document.getElementById("show-button").innerHTML += `
+                    <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-2" data-bs-toggle="modal"
+                        data-bs-target="#loginModal">
+                        Login
+                    </button>
+                    <button type="button" class="btn btn-outline-dark shadow-none " data-bs-toggle="modal"
+                        data-bs-target="#registerModal">
+                        Register
+                    </button>
+                    `;
+
+            }
+        }
+        function logout(cookieName)
+        {
+                document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                location.reload();
+        }
+        let register_form = document.getElementById('register-form');
+
+        register_form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            register();
+        });
+        function register() {
+            if(register_form.elements['pass'].value != register_form.elements['cpass'].value)
+            {
+                alert("Your password confirmation is incorrect");
+            }
+            else{
+            let data = new FormData();
+            data.append('name', register_form.elements['name'].value);
+            data.append('email', register_form.elements['email'].value);
+            data.append('phone', register_form.elements['phone'].value);
+            data.append('profile', register_form.elements['profile'].files[0]);
+            data.append('address', register_form.elements['address'].value);
+            data.append('identification', register_form.elements['identification'].value);
+            data.append('dob', register_form.elements['dob'].value);
+            data.append('pass', register_form.elements['pass'].value);
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8080/register", true);
+
+            xhr.onload = function () {
+                let res = JSON.parse(this.responseText);
+              
+              if(res.status == 1)
+              {
+                 alert(res.mess);
+                 location.reload();
+              }
+              else{
+                 alert(res.mess);
+              }
+            }
+            xhr.send(data);
+        }
+        }
+        window.onload = function(){
+            check_login();
         }
     </script>
 </body>

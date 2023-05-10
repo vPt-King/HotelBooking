@@ -17,23 +17,25 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="../css/common.css">
+
     <style>
-       
-        .availability-form{
+        .availability-form {
             margin-top: -50px;
             z-index: 2;
             position: relative;
         }
-        @media screen and (max-width: 575px){
-            .availability-form{
-            margin-top: 25px;
+
+        @media screen and (max-width: 575px) {
+            .availability-form {
+                margin-top: 25px;
                 padding: 0 35px;
-        }
+            }
         }
     </style>
+    <script scr="../../js/CheckCookie.js"></script>
 </head>
 
-<body class = "bg-light ">
+<body class="bg-light ">
     <nav class="navbar navbar-expand-lg navbar-light bg-white px-lg-3 py-lg-2 shadow-sm sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand me-5 fw-bold fs-3 h-font" href="/">N5 Hotel</a>
@@ -62,9 +64,9 @@
 
 
                 </ul>
-                <div class="d-flex">
+                <div class="d-flex" id="show-button">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-2" data-bs-toggle="modal"
+                    <!-- <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-2" data-bs-toggle="modal"
                         data-bs-target="#loginModal">
                         Login
                     </button>
@@ -72,6 +74,11 @@
                         data-bs-target="#registerModal">
                         Register
                     </button>
+
+                    <button type="button" class="btn btn-outline-dark shadow-none " data-bs-toggle="modal"
+                        data-bs-target="#registerModal">
+                        Register
+                    </button> -->
                 </div>
             </div>
         </div>
@@ -82,7 +89,7 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form>
+                <form method="POST" id="login_form">
                     <div class="modal-header">
                         <h5 class="modal-title d-flex align-items-center">
                             <i class="bi bi-person-circle fs-3 me-2"></i> User Login
@@ -93,17 +100,16 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Email address</label>
-                            <input type="email" class="form-control shadow-none">
+                            <input id="user_email" type="email" class="form-control shadow-none">
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label">Password</label>
-                            <input type="password" class="form-control shadow-none">
+                            <input id="user_password" type="password" class="form-control shadow-none">
                         </div>
 
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <button type="submit" class="btn btn-dark shadow-none">LOGIN</button>
-                            <a href="javascript: void(0)" class="text-secondary text-decoration-none">Fogot pasword</a>
                         </div>
                     </div>
 
@@ -118,7 +124,7 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <form>
+                <form id="register-form">
                     <div class="modal-header">
                         <h5 class="modal-title d-flex align-items-center">
                             <i class="bi bi-person-lines-fill fs-3 me-2"></i> User Registration
@@ -137,39 +143,42 @@
                             <div class="row">
                                 <div class="col-md-6 ps-0 mb-3">
                                     <label class="form-label">Name</label>
-                                    <input type="text" class="form-control shadow-none">
+                                    <input name="name" type="text" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 p-0 mb-3">
                                     <label class="form-label">Email</label>
-                                    <input type="email" class="form-control shadow-none">
+                                    <input name="email" type="email" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 ps-0 mb-3">
                                     <label class="form-label">Phone number</label>
-                                    <input type="number" class="form-control shadow-none">
+                                    <input name="phone" type="number" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 p-0 mb-3">
                                     <label class="form-label">Picture</label>
-                                    <input type="file" class="form-control shadow-none">
+                                    <input name="profile" type="file" accept=".jpg, .jpeg, .png, .webp"
+                                        class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-12 p-0 mb-3">
                                     <label class="form-label">Address</label>
-                                    <textarea class="form-control shadow-none" rows="1"></textarea>
+                                    <textarea name="address" class="form-control shadow-none" rows="1"
+                                        required></textarea>
                                 </div>
                                 <div class="col-md-6 ps-0 mb-3">
                                     <label class="form-label">Identification</label>
-                                    <input type="number" class="form-control shadow-none">
+                                    <input name="identification" type="number" class="form-control shadow-none"
+                                        required>
                                 </div>
                                 <div class="col-md-6 p-0 mb-3">
                                     <label class="form-label">Date of birth</label>
-                                    <input type="date" class="form-control shadow-none">
+                                    <input name="dob" type="date" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 ps-0 mb-3">
                                     <label class="form-label">Password</label>
-                                    <input type="password" class="form-control shadow-none">
+                                    <input name="pass" type="password" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 p-0 mb-3">
                                     <label class="form-label">Confirm password</label>
-                                    <input type="password" class="form-control shadow-none">
+                                    <input name="cpass" type="password" class="form-control shadow-none" required>
                                 </div>
                             </div>
 
@@ -202,391 +211,376 @@
         <!-- Swiper -->
         <div class="swiper swiper-container">
             <div class="swiper-wrapper" id="carousel-data">
+
             </div>
-          
-            
+
+
         </div>
     </div>
 
     <!-- check availability form -->
     <div class="container availability-form">
         <div class="row">
-             <div class="col-lg-12 bg-white shadow p-4 rounded">
+            <div class="col-lg-12 bg-white shadow p-4 rounded">
                 <h5 class="mb-4">Check Booking</h5>
-                <form >
+                <form>
                     <div class="row align-items-end">
-                         <div class="col-lg-3 mb-3">
+                        <div class="col-lg-3 mb-3">
                             <label class="form-label" style="font-weight:500;">Check-in</label>
                             <input type="date" class="form-control shadow-none">
-                         </div>
-                         <div class="col-lg-3 mb-3">
+                        </div>
+                        <div class="col-lg-3 mb-3">
                             <label class="form-label" style="font-weight:500;">Check-out</label>
                             <input type="date" class="form-control shadow-none">
-                         </div>
-                         <div class="col-lg-3 mb-3">
+                        </div>
+                        <div class="col-lg-3 mb-3">
                             <label class="form-label" style="font-weight:500;">Adult</label>
                             <select class="form-select shadow-none">
-                   
+
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
-                              </select>
-                         </div>
-                         <div class="col-lg-2 mb-3">
+                            </select>
+                        </div>
+                        <div class="col-lg-2 mb-3">
                             <label class="form-label" style="font-weight:500;">Children</label>
                             <select class="form-select shadow-none">
-                               
+
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
-                              </select>
-                         </div>
-                         <div class="col-lg-1 mb-lg-3 mt-2">
-                            <button type = "submit" class="btn text-white shadow-none custom-bg">
+                            </select>
+                        </div>
+                        <div class="col-lg-1 mb-lg-3 mt-2">
+                            <button type="submit" class="btn text-white shadow-none custom-bg">
                                 Submit
                             </button>
-                         </div>
+                        </div>
                     </div>
                 </form>
-             </div>
+            </div>
         </div>
     </div>
 
     <!-- Rooms -->
-    <h2 class = "mt-5 pt-4 mb-4 text-center fw-bold h-font">OUR ROOMS</h2>
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">OUR ROOMS</h2>
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6 my-3"  >
+            <div class="col-lg-4 col-md-6 my-3">
                 <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
                     <img src="../images/rooms/1.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 >Simple room name</h5>
-                      <h6 class="mb-4">$200 per night</h6>
-                      <div class="features mb-4">
+                        <h5>Simple room name</h5>
+                        <h6 class="mb-4">$200 per night</h6>
+                        <div class="features mb-4">
 
-                        <h6 class="mb-1">Features</h6>
-                        <span class="badge bg-light text-dark text-wrap">
-                           2 rooms
+                            <h6 class="mb-1">Features</h6>
+                            <span class="badge bg-light text-dark text-wrap">
+                                2 rooms
 
-                        </span>
-                        <span class="badge bg-light text-dark text-wrap">
-                            2 Bathroom
- 
-                         </span>
-                         <span class="badge bg-light text-dark text-wrap">
-                            1 Balcony
-                         </span>
-                         <span class="badge bg-light text-dark text-wrap">
-                            3 sofa
-                         </span>
-                      </div>
-                      <div class="facilities mb-4">
-                        <h6 class="mb-1">Facilities</h6>
-                        <span class="badge bg-light text-dark text-wrap">
-                            Wifi
- 
-                         </span>
-                         <span class="badge bg-light text-dark text-wrap">
-                             Television
-  
-                          </span>
-                          <span class="badge bg-light text-dark text-wrap">
-                             AC
-                          </span>
-                          <span class="badge bg-light text-dark text-wrap">
-                             Room heater
-                          </span>
-                          
-                      </div>
-                      <div class="guests mb-4">
-                        <h6 class="mb-1">Guests</h6>
-                        <span class="badge bg-light text-dark text-wrap">
-                            5 Adults
- 
-                         </span>
-                         <span class="badge bg-light text-dark text-wrap">
-                             4 Children
-                         </span>
-                      </div>
-                      
-                      <div class="rating mb-4">
-                        <h6 class="mb-1">Rating</h6>
-                        <span class="badge rounded-pill bg-light">
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        </span>
-                      </div>
-                      <div class="d-flex justify-content-evenly">
-                        
-                          <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Book now</a>
-                          <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More Details</a>
-                      </div>
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                2 Bathroom
+
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                1 Balcony
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                3 sofa
+                            </span>
+                        </div>
+                        <div class="facilities mb-4">
+                            <h6 class="mb-1">Facilities</h6>
+                            <span class="badge bg-light text-dark text-wrap">
+                                Wifi
+
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                Television
+
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                AC
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                Room heater
+                            </span>
+
+                        </div>
+                        <div class="guests mb-4">
+                            <h6 class="mb-1">Guests</h6>
+                            <span class="badge bg-light text-dark text-wrap">
+                                5 Adults
+
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                4 Children
+                            </span>
+                        </div>
+
+                        <div class="rating mb-4">
+                            <h6 class="mb-1">Rating</h6>
+                            <span class="badge rounded-pill bg-light">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                            </span>
+                        </div>
+                        <div class="d-flex justify-content-evenly">
+
+                            <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Book now</a>
+                            <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More Details</a>
+                        </div>
                     </div>
-                  </div>
+                </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 my-3"  >
+            <div class="col-lg-4 col-md-6 my-3">
                 <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
                     <img src="../images/rooms/1.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 >Simple room name</h5>
-                      <h6 class="mb-4">$200 per night</h6>
-                      <div class="features mb-4">
+                        <h5>Simple room name</h5>
+                        <h6 class="mb-4">$200 per night</h6>
+                        <div class="features mb-4">
 
-                        <h6 class="mb-1">Features</h6>
-                        <span class="badge bg-light text-dark text-wrap">
-                           2 rooms
+                            <h6 class="mb-1">Features</h6>
+                            <span class="badge bg-light text-dark text-wrap">
+                                2 rooms
 
-                        </span>
-                        <span class="badge bg-light text-dark text-wrap">
-                            2 Bathroom
- 
-                         </span>
-                         <span class="badge bg-light text-dark text-wrap">
-                            1 Balcony
-                         </span>
-                         <span class="badge bg-light text-dark text-wrap">
-                            3 sofa
-                         </span>
-                      </div>
-                      <div class="facilities mb-4">
-                        <h6 class="mb-1">Facilities</h6>
-                        <span class="badge bg-light text-dark text-wrap">
-                            Wifi
- 
-                         </span>
-                         <span class="badge bg-light text-dark text-wrap">
-                             Television
-  
-                          </span>
-                          <span class="badge bg-light text-dark text-wrap">
-                             AC
-                          </span>
-                          <span class="badge bg-light text-dark text-wrap">
-                             Room heater
-                          </span>
-                      </div>
-                      <div class="guests mb-4">
-                        <h6 class="mb-1">Guests</h6>
-                        <span class="badge bg-light text-dark text-wrap">
-                            5 Adults
- 
-                         </span>
-                         <span class="badge bg-light text-dark text-wrap">
-                             4 Children
-                         </span>
-                      </div>
-                      <div class="rating mb-4">
-                        <h6 class="mb-1">Rating</h6>
-                        <span class="badge rounded-pill bg-light">
-                            <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        </span>
-                      </div>
-                      <div class="d-flex justify-content-evenly">
-                        
-                          <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Book now</a>
-                          <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More Details</a>
-                      </div>
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                2 Bathroom
+
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                1 Balcony
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                3 sofa
+                            </span>
+                        </div>
+                        <div class="facilities mb-4">
+                            <h6 class="mb-1">Facilities</h6>
+                            <span class="badge bg-light text-dark text-wrap">
+                                Wifi
+
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                Television
+
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                AC
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                Room heater
+                            </span>
+                        </div>
+                        <div class="guests mb-4">
+                            <h6 class="mb-1">Guests</h6>
+                            <span class="badge bg-light text-dark text-wrap">
+                                5 Adults
+
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                4 Children
+                            </span>
+                        </div>
+                        <div class="rating mb-4">
+                            <h6 class="mb-1">Rating</h6>
+                            <span class="badge rounded-pill bg-light">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                            </span>
+                        </div>
+                        <div class="d-flex justify-content-evenly">
+
+                            <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Book now</a>
+                            <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More Details</a>
+                        </div>
                     </div>
-                  </div>
+                </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 my-3"  >
+            <div class="col-lg-4 col-md-6 my-3">
                 <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
                     <img src="../images/rooms/1.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 >Simple room name</h5>
-                      <h6 class="mb-4">$200 per night</h6>
-                      <div class="features mb-4">
+                        <h5>Simple room name</h5>
+                        <h6 class="mb-4">$200 per night</h6>
+                        <div class="features mb-4">
 
-                        <h6 class="mb-1">Features</h6>
-                        <span class="badge bg-light text-dark text-wrap">
-                           2 rooms
+                            <h6 class="mb-1">Features</h6>
+                            <span class="badge bg-light text-dark text-wrap">
+                                2 rooms
 
-                        </span>
-                        <span class="badge bg-light text-dark text-wrap">
-                            2 Bathroom
- 
-                         </span>
-                         <span class="badge bg-light text-dark text-wrap">
-                            1 Balcony
-                         </span>
-                         <span class="badge bg-light text-dark text-wrap">
-                            3 sofa
-                         </span>
-                      </div>
-                      <div class="facilities mb-4">
-                        <h6 class="mb-1">Facilities</h6>
-                        <span class="badge bg-light text-dark text-wrap">
-                            Wifi
- 
-                         </span>
-                         <span class="badge bg-light text-dark text-wrap">
-                             Television
-  
-                          </span>
-                          <span class="badge bg-light text-dark text-wrap">
-                             AC
-                          </span>
-                          <span class="badge bg-light text-dark text-wrap">
-                             Room heater
-                          </span>
-                      </div>
-                      <div class="guests mb-4">
-                        <h6 class="mb-1">Guests</h6>
-                        <span class="badge bg-light text-dark text-wrap">
-                            5 Adults
- 
-                         </span>
-                         <span class="badge bg-light text-dark text-wrap">
-                             4 Children
-                         </span>
-                      </div>
-                      <div class="rating mb-4">
-                        <h6 class="mb-1">Rating</h6>
-                        <span class="badge rounded-pill bg-light">
-                            <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        </span>
-                      </div>
-                      <div class="d-flex justify-content-evenly">
-                        
-                          <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Book now</a>
-                          <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More Details</a>
-                      </div>
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                2 Bathroom
+
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                1 Balcony
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                3 sofa
+                            </span>
+                        </div>
+                        <div class="facilities mb-4">
+                            <h6 class="mb-1">Facilities</h6>
+                            <span class="badge bg-light text-dark text-wrap">
+                                Wifi
+
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                Television
+
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                AC
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                Room heater
+                            </span>
+                        </div>
+                        <div class="guests mb-4">
+                            <h6 class="mb-1">Guests</h6>
+                            <span class="badge bg-light text-dark text-wrap">
+                                5 Adults
+
+                            </span>
+                            <span class="badge bg-light text-dark text-wrap">
+                                4 Children
+                            </span>
+                        </div>
+                        <div class="rating mb-4">
+                            <h6 class="mb-1">Rating</h6>
+                            <span class="badge rounded-pill bg-light">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                            </span>
+                        </div>
+                        <div class="d-flex justify-content-evenly">
+
+                            <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Book now</a>
+                            <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More Details</a>
+                        </div>
                     </div>
-                  </div>
+                </div>
             </div>
             <div class="col-lg-12 text-center mt-5">
-                <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bolder shadow-none">More rooms>>></a>
+                <a href="/rooms" class="btn btn-sm btn-outline-dark rounded-0 fw-bolder shadow-none">More rooms>>></a>
             </div>
         </div>
     </div>
 
 
     <!-- OUR FACILITES -->
-    <h2 class = "mt-5 pt-4 mb-4 text-center fw-bold h-font">OUR FACILITIES</h2>
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">OUR FACILITIES</h2>
     <div class="container">
-        <div class="row justify-content-evenly px-lg-0 px-md-0 px-5">
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3" >
-                <img src="../images/facilities/IMG_27079.svg" width="80px">
-                <h5 class="mt-3">Wifi</h5>
-            </div>
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3" >
-                <img src="../images/facilities/IMG_27079.svg" width="80px">
-                <h5 class="mt-3">Wifi</h5>
-            </div><div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3" >
-                <img src="../images/facilities/IMG_27079.svg" width="80px">
-                <h5 class="mt-3">Wifi</h5>
-            </div><div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3" >
-                <img src="../images/facilities/IMG_27079.svg" width="80px">
-                <h5 class="mt-3">Wifi</h5>
-            </div>
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3" >
-                <img src="../images/facilities/IMG_27079.svg" width="80px">
-                <h5 class="mt-3">Wifi</h5>
-            </div>
+        <div class="row justify-content-evenly px-lg-0 px-md-0 px-5" id="show_facility">
         </div>
-           
-            <div class="col-lg-12  text-center mt-5">
-                <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bolder shadow-none">More Facilites>>></a>
+
+        <div class="col-lg-12  text-center mt-5">
+            <a href="/facilities" class="btn btn-sm btn-outline-dark rounded-0 fw-bolder shadow-none">More
+                Facilites>>></a>
         </div>
-        
+
     </div>
 
 
     <!-- TESTIMONIALS -->
-    <h2 class = "mt-5 pt-4 mb-4 text-center fw-bold h-font">TESTIMONIALS</h2>
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">TESTIMONIALS</h2>
     <div class="container">
         <div class="swiper swiper-testimonials">
             <div class="swiper-wrapper">
 
-              <div class="swiper-slide bg-white p-4">
-                <div class="profile d-flex align-items-center mb-3">
-                    <img src="../images/facilities/IMG_41622.svg" width = "30px">
-                    <h6 class="m-0 ms-2">Random userl</h6>
+                <div class="swiper-slide bg-white p-4">
+                    <div class="profile d-flex align-items-center mb-3">
+                        <img src="../images/facilities/IMG_41622.svg" width="30px">
+                        <h6 class="m-0 ms-2">Random userl</h6>
+                    </div>
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur
+                        rerum quam quas odit ipsam molestiae ullam pariatur
+                        eum repudiandae, recusandae laboriosam necessitatibus
+                        hic impedit, ratione laborum aliquam? Doloribus, blanditiis animi.
+                    </p>
+                    <div class="rating">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                    </div>
                 </div>
-               <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur 
-                rerum quam quas odit ipsam molestiae ullam pariatur 
-                eum repudiandae, recusandae laboriosam necessitatibus
-                hic impedit, ratione laborum aliquam? Doloribus, blanditiis animi.
-               </p>
-               <div class="rating">
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-               </div>
-              </div>
 
-              <div class="swiper-slide bg-white p-4">
-                <div class="profile d-flex align-items-center mb-3">
-                    <img src="../images/facilities/IMG_41622.svg" width = "30px">
-                    <h6 class="m-0 ms-2">Random userl</h6>
+                <div class="swiper-slide bg-white p-4">
+                    <div class="profile d-flex align-items-center mb-3">
+                        <img src="../images/facilities/IMG_41622.svg" width="30px">
+                        <h6 class="m-0 ms-2">Random userl</h6>
+                    </div>
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur
+                        rerum quam quas odit ipsam molestiae ullam pariatur
+                        eum repudiandae, recusandae laboriosam necessitatibus
+                        hic impedit, ratione laborum aliquam? Doloribus, blanditiis animi.
+                    </p>
+                    <div class="rating">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                    </div>
                 </div>
-               <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur 
-                rerum quam quas odit ipsam molestiae ullam pariatur 
-                eum repudiandae, recusandae laboriosam necessitatibus
-                hic impedit, ratione laborum aliquam? Doloribus, blanditiis animi.
-               </p>
-               <div class="rating">
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-               </div>
-              </div>
-              <div class="swiper-slide bg-white p-4">
-                <div class="profile d-flex align-items-center mb-3">
-                    <img src="../images/facilities/IMG_41622.svg" width = "30px">
-                    <h6 class="m-0 ms-2">Random userl</h6>
+                <div class="swiper-slide bg-white p-4">
+                    <div class="profile d-flex align-items-center mb-3">
+                        <img src="../images/facilities/IMG_41622.svg" width="30px">
+                        <h6 class="m-0 ms-2">Random userl</h6>
+                    </div>
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur
+                        rerum quam quas odit ipsam molestiae ullam pariatur
+                        eum repudiandae, recusandae laboriosam necessitatibus
+                        hic impedit, ratione laborum aliquam? Doloribus, blanditiis animi.
+                    </p>
+                    <div class="rating">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                    </div>
                 </div>
-               <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur 
-                rerum quam quas odit ipsam molestiae ullam pariatur 
-                eum repudiandae, recusandae laboriosam necessitatibus
-                hic impedit, ratione laborum aliquam? Doloribus, blanditiis animi.
-               </p>
-               <div class="rating">
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-               </div>
-              </div>
 
             </div>
             <div class="swiper-pagination"></div>
-          </div>
+        </div>
     </div>
 
 
-     <!-- REACH US-->
-     <h2 class = "mt-5 pt-4 mb-4 text-center fw-bold h-font">REACH US</h2>
-     <div class="container">
+    <!-- REACH US-->
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">REACH US</h2>
+    <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 rounded">
-                <iframe class="w-100 rounded" id="reach_us_iframe" height="320" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe class="w-100 rounded" id="reach_us_iframe" height="320" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="col-lg-4 col-md-4">
                 <div class="bg-white p-4 rounded mb-4">
                     <h5>Call us</h5>
-                    <a  id="reach_us_pn1" class="d-inline-block mb-2 text-decoration-none text-dark">
+                    <a id="reach_us_pn1" class="d-inline-block mb-2 text-decoration-none text-dark">
                         <i class="bi bi-telephone-fill"></i>
                     </a>
                     <br>
@@ -616,10 +610,8 @@
                     <br>
                 </div>
             </div>
-
-
         </div>
-     </div>
+    </div>
 
 
     <!-- footer -->
@@ -630,7 +622,9 @@
                     N5 Hotel
                 </h3>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ab alias beatae placeat vero quam animi ipsam. Repellat delectus pariatur vitae magnam? Quisquam, consequuntur est aperiam dicta quaerat porro ipsum?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ab alias beatae placeat vero quam
+                    animi ipsam. Repellat delectus pariatur vitae magnam? Quisquam, consequuntur est aperiam dicta
+                    quaerat porro ipsum?
                 </p>
             </div>
 
@@ -671,8 +665,7 @@
     </div>
     <br><br><br>
     <br><br><br>
-    <script src="../../js/api/HomePage.js">
-    </script>
+   
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -681,32 +674,223 @@
         var swiper = new Swiper(".swiper-container", {
             spaceBetween: 30,
             effect: "fade",
-            loop:true,
-            autoplay:{
-                delay:3500,
-                disableOnInteraction:false,
+            loop: true,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
             }
-            
+
         });
     </script>
     <script>
         var swiper = new Swiper(".swiper-testimonials", {
-          effect: "coverflow",
-          grabCursor: true,
-          centeredSlides: true,
-          slidesPerView: "auto",
-          coverflowEffect: {
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-          },
-          pagination: {
-            el: ".swiper-pagination",
-          },
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+            },
         });
-      </script>
+    </script>
+
+    <script>
+        function get_contacts() {
+            let contacts_p_id = ['address', 'gmap', 'pn1', 'pn2', 'email', 'fb', 'insta', 'tw'];
+            let iframe = document.getElementById('iframe');
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:8080/admin/settings/contact", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onload = function () {
+                contacts_data = JSON.parse(this.responseText);
+                set_contact_data(contacts_data);
+            }
+            xhr.send();
+        }
+
+        function set_contact_data(data) {
+            document.getElementById('reach_us_iframe').setAttribute("src", data.iframe);
+            let pn1 = document.getElementById('reach_us_pn1');
+            pn1.setAttribute("href", data.pn1);
+            pn1.innerHTML += data.pn1;
+            let pn2 = document.getElementById('reach_us_pn2');
+            pn2.setAttribute("href", data.pn2);
+            pn2.innerHTML += data.pn2;
+            document.getElementById("reach_us_tw").setAttribute("href", data.tw);
+            document.getElementById("reach_us_fb").setAttribute("href", data.fb);
+            document.getElementById("reach_us_insta").setAttribute("href", data.insta);
+        }
+
+
+        function get_carousel() {
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:8080/admin/carousel", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            document.getElementById("carousel-data").innerHTML = "";
+            xhr.onload = function () {
+                resultArray = JSON.parse(this.responseText);
+                console.log(resultArray);
+                for (var i = 0; i < resultArray.length; i++) {
+                    var obj = resultArray[i];
+                    var htmlString = `
+            <div class="swiper-slide">
+                    <img src="http://localhost:8080/getimage/${obj.image}" class="w-100 d-block"/>
+            </div>
+            `;
+                    document.getElementById("carousel-data").innerHTML += htmlString
+                }
+            }
+            xhr.send();
+        }
+        function get_facilites() {
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:8080/admin/features_facilities/facility", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            document.getElementById("show_facility").innerHTML = "";
+            xhr.onload = function () {
+                resultArray = JSON.parse(this.responseText);
+                for (var i = 0; i < resultArray.length; i++) {
+                    var obj = resultArray[i];
+                    var htmlString = `
+                    <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
+                        <img src="http://localhost:8080/getimage/${obj.icon}" width="80px" height="70px">
+                        <h5 class="mt-3">${obj.name}</h5>
+                    </div>
+                 
+                `;
+                    console.log(htmlString);
+                    document.getElementById("show_facility").innerHTML += htmlString
+                }
+            }
+            xhr.send();
+        }
+        let login_form = document.getElementById("login_form");
+        login_form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            login();
+        });
+        function login() {
+            let email = document.getElementById("user_email").value;
+            let password = document.getElementById("user_password").value;
+            data = {
+                id: "",
+                name: "",
+                email: email,
+                image: "",
+                phone: "",
+                identification: "",
+                dob: "",
+                password: password,
+                address: ""
+            };
+            console.log(JSON.stringify(data));
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8080/login", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onload = function () {
+                let res = JSON.parse(this.responseText);
+                if (res.status == 1) {
+                    document.cookie = "isUser=" + email + ";max-age=86400;path=/";
+                    location.reload();
+                }
+                alert(res.mess);
+            }
+            xhr.send(JSON.stringify(data));
+        }
+
+        function checkCookie(cookieName) {
+            var cookies = document.cookie.split(';'); 
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim(); 
+                if (cookie.indexOf(cookieName + '=') === 0) {
+                    return true;
+                }
+            }
+            return false; // Cookie does not exist
+        }
+        function check_login() {
+            var cookieExists = checkCookie('isUser');
+            document.getElementById("show-button").innerHTML = "";
+            console.log(cookieExists);
+            if (cookieExists) {
+                document.getElementById("show-button").innerHTML += `
+                    <button type="button" class="btn btn-outline-dark shadow-none " onclick="logout('isUser')">
+                        Logout
+                    </button>
+                    `;
+            }
+            else {
+                document.getElementById("show-button").innerHTML += `
+                    <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-2" data-bs-toggle="modal"
+                        data-bs-target="#loginModal">
+                        Login
+                    </button>
+                    <button type="button" class="btn btn-outline-dark shadow-none " data-bs-toggle="modal"
+                        data-bs-target="#registerModal">
+                        Register
+                    </button>
+                    `;
+
+            }
+        }
+        function logout(cookieName) {
+            document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            location.reload();
+        }
+        let register_form = document.getElementById('register-form');
+
+        register_form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            register();
+        });
+        function register() {
+            if (register_form.elements['pass'].value != register_form.elements['cpass'].value) {
+                alert("Your password confirmation is incorrect");
+            }
+            else {
+                let data = new FormData();
+                data.append('name', register_form.elements['name'].value);
+                data.append('email', register_form.elements['email'].value);
+                data.append('phone', register_form.elements['phone'].value);
+                data.append('profile', register_form.elements['profile'].files[0]);
+                data.append('address', register_form.elements['address'].value);
+                data.append('identification', register_form.elements['identification'].value);
+                data.append('dob', register_form.elements['dob'].value);
+                data.append('pass', register_form.elements['pass'].value);
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "http://localhost:8080/register", true);
+
+                xhr.onload = function () {
+                    let res = JSON.parse(this.responseText);
+
+                    if (res.status == 1) {
+                        alert(res.mess);
+                        location.reload();
+                    }
+                    else {
+                        alert(res.mess);
+                    }
+                }
+                xhr.send(data);
+            }
+        }
+        window.onload = function () {
+            check_login();
+            get_facilites();
+            get_contacts();
+            get_carousel();
+        }
+    </script>
 </body>
 
 </html>

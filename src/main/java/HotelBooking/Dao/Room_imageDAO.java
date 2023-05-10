@@ -114,4 +114,24 @@ public class Room_imageDAO {
 		}
 	}
 	
+	public Room_images GetRoom_imagesThumbedByRoom_id(int room_id)
+	{
+		Room_images list = null;
+		Connection a=DBconnect.getJDBCConnection();
+		String q = "select * from room_images where room_id = ? and thumb = 1";
+		try {
+			PreparedStatement ps = a.prepareStatement(q);
+			ps.setInt(1, room_id);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next())
+			{
+				list = new Room_images(rs.getInt("id"),rs.getInt("room_id"),rs.getString("image"),rs.getInt("thumb"));
+			}
+			rs.close();ps.close();a.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 }

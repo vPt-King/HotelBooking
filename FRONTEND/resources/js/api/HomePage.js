@@ -51,5 +51,5 @@ function get_carousel()
 }
 window.onload = function() {
     get_contacts();
-    get_carousel()
+    get_carousel();
 }

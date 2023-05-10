@@ -38,6 +38,10 @@ app.get('/admin/carousel', function(req, res) {
     res.sendFile(views + "Admin/Carousel.html");
 });
 
+app.get('/admin/booking', function(req, res) {
+    res.sendFile(views + "Admin/Booking.html");
+});
+
 app.get('/admin/login', function(req, res) {
     res.sendFile(views + "Admin/Admin.html");
 });
@@ -74,9 +78,24 @@ app.get('/about', function(req, res) {
     res.sendFile(views + "Client/About.html");
 });
 
+app.get('/room-detail', function(req, res) {
+    res.sendFile(views + "Client/Room_detail.html");
+});
+
+app.get('/confirm-booking', function(req, res) {
+    res.sendFile(views + "Client/confirm_booking.html");
+});
+
+app.get('/error', function(req, res) {
+    res.sendFile(views + "/Error.html");
+});
+
+
 app.get('/', function(req, res) {
     res.sendFile(views + "Client/HomePage.html");
 });
+
+
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

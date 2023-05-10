@@ -51,6 +51,7 @@ import HotelBooking.Entity.User_queries;
 import HotelBooking.Entity.Rooms;
 import HotelBooking.Entity.RoomResponse;
 import HotelBooking.Entity.Room_Facilities;
+import HotelBooking.Entity.Room_Feature_Facilities;
 import HotelBooking.Entity.Room_images;
 import HotelBooking.Dao.SettingsDAO;
 import HotelBooking.Dao.Contact_detailsDAO;
@@ -576,4 +577,7 @@ public class Admin {
 		String json = gson.toJson(mr);
 		return new ResponseEntity<String>(json,HttpStatus.OK);
 	}
+	
+	
+	
 }

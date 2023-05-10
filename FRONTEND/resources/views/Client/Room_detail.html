@@ -18,22 +18,22 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="../css/common.css">
     <style>
-        .availability-form {
+       
+        .availability-form{
             margin-top: -50px;
             z-index: 2;
             position: relative;
         }
-
-        @media screen and (max-width: 575px) {
-            .availability-form {
-                margin-top: 25px;
+        @media screen and (max-width: 575px){
+            .availability-form{
+            margin-top: 25px;
                 padding: 0 35px;
-            }
+        }
         }
     </style>
 </head>
 
-<body class="bg-light ">
+<body class = "bg-light ">
     <nav class="navbar navbar-expand-lg navbar-light bg-white px-lg-3 py-lg-2 shadow-sm sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand me-5 fw-bold fs-3 h-font" href="/">N5 Hotel</a>
@@ -203,93 +203,113 @@
             </div>
         </div>
     </div>
-    <div class="my-5 px-4">
-        <h2 class="fw-bold h-font text-center">ABOUT US</h2>
-        <div class="h-line bg-dark"></div>
-        <p class="text-center mt-3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Temporibus incidunt odio quos <br> dolore commodi repudiandae
-            tenetur consequuuntur et similique asperiores.
-        </p>
-    </div>
+
+
+
+
+    <!-- content -->
     <div class="container">
-        <div class="row justify-content-between align-items-center">
-            <div class="col-lg-6 col-md-5 mb-4 order-lg-1 order-md-1 order-2">
-                <h3 class="mb-3">Loren ipsum dolor sit</h3>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit
-                    Onmis minima sapoente aliquam sed officia nostrum fuga?
-                </p>
-            </div>
-            <div class="col-lg-5 col-md-5 mb-4 order-lg-2 order-md-2 order-1">
-                <img src="images/about/about.jpg" class="w-100">
-            </div>
-        </div>
-    </div>
-    <div class="container mt-5">
         <div class="row">
-            <div class="col-lg-3 col-md-6 mb-4 px-4">
-                <div class="bg-white rounded shadow p-4 border-top border-4 text-center box">
-                    <img src="images/about/hotel.svg" width="70px">
-                    <h4 class="mt-3">100+ ROOMS</h4>
+            <div class="col-12 my-5 mb-4 px-4">
+                <h2 class="fw-bold" id="room-name">Room name</h2>
+                <div style="font-size: 14px;">
+                    <a href="#" class="text-secondary text-decoration-none">HOME</a>
+                    <span class="text-secondary">></span>
+                    <a href="/rooms" class="text-secondary text-decoration-none">ROOMS</a>
                 </div>
+            
             </div>
-            <div class="col-lg-3 col-md-6 mb-4 px-4">
-                <div class="bg-white rounded shadow p-4 border-top border-4 text-center box">
-                    <img src="images/about/customers.svg" width="70px">
-                    <h4 class="mt-3">200+ CUSTOMERS</h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4 px-4">
-                <div class="bg-white rounded shadow p-4 border-top border-4 text-center box">
-                    <img src="images/about/rating.svg" width="70px">
-                    <h4 class="mt-3">150+ REVIEWS</h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4 px-4">
-                <div class="bg-white rounded shadow p-4 border-top border-4 text-center box">
-                    <img src="images/about/staff.svg" width="70px">
-                    <h4 class="mt-3">100+ STAFFS</h4>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <h3 class="my-5 fw-bold h-font text-center">MANAGEMENT TEAM</h3>
-
-    <div class="container px-4">
-        <div class="swiper mySwiper">
-            <div id="management_team_show" class="swiper-wrapper mb-5">
-                <!-- <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/IMG_17352.jpg" class="w-100">
-                    <h5 class="mt-2">Random Name</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/IMG_17352.jpg" class="w-100">
-                    <h5 class="mt-2">Random Name</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/IMG_17352.jpg" class="w-100">
-                    <h5 class="mt-2">Random Name</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/IMG_17352.jpg" class="w-100">
-                    <h5 class="mt-2">Random Name</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/IMG_17352.jpg" class="w-100">
-                    <h5 class="mt-2">Random Name</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/IMG_17352.jpg" class="w-100">
-                    <h5 class="mt-2">Random Name</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/IMG_17352.jpg" class="w-100">
-                    <h5 class="mt-2">Random Name</h5>
-                </div> -->
+            <div class="col-lg-7 col-md-12 px-4 bg-dark">
+                <div id="roomCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner" id="show-room-carousel">
+                     
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#roomCarousel" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#roomCarousel" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
             </div>
-            <div class="swiper-pagination"></div>
+
+            <div class="col-lg-5 col-md-12 px-4">
+                <div class="card mb-4 border-0 shadow-sm rounded-3">
+                    <div class="card-body">
+                        <h4 class="mb-4" id="show-room-price"></h4>
+
+                        <div class="rating">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i> 
+                        </div>
+
+                        <div class="mb-3">
+                            <h6 class="mb-1">Features</h6>
+                            <div id="show-room-features">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6 class="mb-1">Facilities</h6>
+                            <div id="show-room-facilities">
+                            </div>
+                        </div>
+
+                        <div class="guests">
+                            <h6 class="mb-1">Guests</h6>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap" id="guest-adult">
+                                ${item.room.adult} adults
+                            </span>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap" id="guest-children">
+                                ${item.room.children} Children
+                            </span>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6 class="mb-1">Area</h6>
+                            <div>
+                                <span id="show-room-area" class="badge bg-light text-dark text-wrap"></span>
+                            </div>
+                        </div>
+
+                        <a href="" id="booking" class="btn w-100 text-white custom-bg shadow-none mb-2">Book now</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-12 mt-4 px-4" id="show-room">
+                <div class="mb-4">
+                    <h5>Description</h5>
+                    <p id="show-room-description"></p>
+                </div>
+
+                <div>
+                    <h5 class="mb-3">Reviews & Ratings</h5>
+                    <div class="profile d-flex align-items-center mb-3">
+                        <img src="../images/facilities/IMG_41622.svg" width = "30px">
+                        <h6 class="m-0 ms-2">Random userl</h6>
+                    </div>
+                   <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur 
+                    rerum quam quas odit ipsam molestiae ullam pariatur 
+                    eum repudiandae, recusandae laboriosam necessitatibus
+                    hic impedit, ratione laborum aliquam? Doloribus, blanditiis animi.
+                   </p>
+                   <div class="rating">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                   </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- footer -->
@@ -300,9 +320,7 @@
                     N5 Hotel
                 </h3>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ab alias beatae placeat vero quam
-                    animi ipsam. Repellat delectus pariatur vitae magnam? Quisquam, consequuntur est aperiam dicta
-                    quaerat porro ipsum?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ab alias beatae placeat vero quam animi ipsam. Repellat delectus pariatur vitae magnam? Quisquam, consequuntur est aperiam dicta quaerat porro ipsum?
                 </p>
             </div>
 
@@ -343,9 +361,6 @@
     </div>
     <br><br><br>
     <br><br><br>
-    <script src="../../js/api/About.js">
-
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -354,75 +369,89 @@
         var swiper = new Swiper(".swiper-container", {
             spaceBetween: 30,
             effect: "fade",
-            loop: true,
-            autoplay: {
-                delay: 3500,
-                disableOnInteraction: false,
+            loop:true,
+            autoplay:{
+                delay:3500,
+                disableOnInteraction:false,
             }
-
+            
         });
     </script>
     <script>
         var swiper = new Swiper(".swiper-testimonials", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: "auto",
-            coverflowEffect: {
-                rotate: 50,
-                stretch: 0,
-                depth: 100,
-                modifier: 1,
-                slideShadows: true,
-            },
-            pagination: {
-                el: ".swiper-pagination",
-            },
+          effect: "coverflow",
+          grabCursor: true,
+          centeredSlides: true,
+          slidesPerView: "auto",
+          coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+          },
+          pagination: {
+            el: ".swiper-pagination",
+          },
         });
-    </script>
-    <script>
-        var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 4,
-            spaceBetween: 40,
-            pagination: {
-                el: ".swiper-pagination",
-            },
-            breakpoints: {
-                320: {
-                    slidesPerView: 1,
-                },
-                640: {
-                    slidesPerView: 1,
-                },
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                },
-            }
-        });
-    </script>
-    <script>
-        function get_members() {
+      </script>
+      <script>
+        function get_room_feature_and_facilities_detail()
+        {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            let data = {
+                id : id
+            }   
             let xhr = new XMLHttpRequest();
-            xhr.open("GET", "http://localhost:8080/admin/settings/management_team", true);
+            xhr.open("POST", "http://localhost:8080/get-room-feature-and-facilities-detail",true);
             xhr.setRequestHeader("Content-Type", "application/json");
-            let show = document.getElementById("management_team_show").innerHTML = "";
-            xhr.onload = function () {
-                resultArray = JSON.parse(this.responseText);
-                for (var i = 0; i < resultArray.length; i++) {
-                    var obj = resultArray[i];
-                    var htmlString = `
-            <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                <img src="http://localhost:8080/getimage/${obj.picture}" class="w-100">
-                <h5 class="mt-2">${obj.name}</h5>
-            </div>
-            `;
-                    document.getElementById("management_team_show").innerHTML += htmlString
+            xhr.onload = function()
+            {
+                console.log(this.responseText)
+                
+                if(this.responseText == "")
+                {
+                    alert("No id specified");
+                    window.location.href = "https://localhost:8080/Error.html";
+                }   
+                else
+                {
+                    let res = JSON.parse(this.responseText);
+                    document.getElementById("show-room-carousel").innerHTML = "";
+                    document.getElementById("show-room-price").innerHTML ="$" + res.room.price +" per night"; 
+                    document.getElementById("show-room-features").innerHTML ="";
+                    document.getElementById("booking").setAttribute("href","/confirm-booking?id="+res.room.id);
+                    let listFeatures = res.listFeatures;
+                    listFeatures.forEach(feature => {
+                        let htmlString = `<span class="badge bg-light text-dark text-wrap">${feature.name}</span>`;
+                        document.getElementById("show-room-features").innerHTML += htmlString;
+                    });
+
+                    document.getElementById("show-room-facilities").innerHTML = "";
+                    let listFacilities= res.listFacilities;
+                    listFacilities.forEach(facility => {
+                        let htmlString = `<span class="badge bg-light text-dark text-wrap">${facility.name}</span>`;
+                        document.getElementById("show-room-facilities").innerHTML += htmlString;
+                    })
+                    let listImages = res.listRoom_images;
+                    listImages.forEach(images => {
+                        let room_carousel_imageHtml = `
+                        <div class="carousel-item active">
+                            <img src="http://localhost:8080/getimage/${images.image}" class="d-block w-100 rounded" alt="...">
+                        </div>
+                        `;
+                        document.getElementById("show-room-carousel").innerHTML+=room_carousel_imageHtml;
+
+                    })
+                    document.getElementById("guest-adult").innerHTML = res.room.adult+" Adult";
+                    document.getElementById("guest-children").innerHTML = res.room.children+" Children";
+                    document.getElementById("show-room-area").innerHTML = res.room.area +" sq.ft";
+                    document.getElementById("show-room-description").innerHTML = res.room.description;
                 }
-            }
-            xhr.send();
+        }
+            xhr.send(JSON.stringify(data));     
+             
         }
 
         let login_form = document.getElementById("login_form");
@@ -451,15 +480,16 @@
 
             xhr.onload = function () {
                 let res = JSON.parse(this.responseText);
-                if (res.status == 1) {
-                    document.cookie = "isUser=" + email + ";max-age=86400;path=/";
+                if(res.status == 1)
+                {
+                    document.cookie = "isUser="+email+";max-age=86400;path=/";
                     location.reload();
                 }
                 alert(res.mess);
             }
             xhr.send(JSON.stringify(data));
         }
-
+        
         function checkCookie(cookieName) {
             var cookies = document.cookie.split(';'); // Get all cookies as an array
 
@@ -500,9 +530,10 @@
 
             }
         }
-        function logout(cookieName) {
-            document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-            location.reload();
+        function logout(cookieName)
+        {
+                document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                location.reload();
         }
         let register_form = document.getElementById('register-form');
 
@@ -511,44 +542,44 @@
             register();
         });
         function register() {
-
-            if (register_form.elements['pass'].value != register_form.elements['cpass'].value) {
+            if(register_form.elements['pass'].value != register_form.elements['cpass'].value)
+            {
                 alert("Your password confirmation is incorrect");
             }
-            else {
-                let data = new FormData();
-                data.append('name', register_form.elements['name'].value);
-                data.append('email', register_form.elements['email'].value);
-                data.append('phone', register_form.elements['phone'].value);
-                data.append('profile', register_form.elements['profile'].files[0]);
-                data.append('address', register_form.elements['address'].value);
-                data.append('identification', register_form.elements['identification'].value);
-                data.append('dob', register_form.elements['dob'].value);
-                data.append('pass', register_form.elements['pass'].value);
-                console.log(data);
-                console.log("here");
-                let xhr = new XMLHttpRequest();
-                xhr.open("POST", "http://localhost:8080/register", true);
+            else{
+            let data = new FormData();
+            data.append('name', register_form.elements['name'].value);
+            data.append('email', register_form.elements['email'].value);
+            data.append('phone', register_form.elements['phone'].value);
+            data.append('profile', register_form.elements['profile'].files[0]);
+            data.append('address', register_form.elements['address'].value);
+            data.append('identification', register_form.elements['identification'].value);
+            data.append('dob', register_form.elements['dob'].value);
+            data.append('pass', register_form.elements['pass'].value);
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8080/register", true);
 
-                xhr.onload = function () {
-                    let res = JSON.parse(this.responseText);
-
-                    if (res.status == 1) {
-                        alert(res.mess);
-                        location.reload();
-                    }
-                    else {
-                        alert(res.mess);
-                    }
-                }
-                xhr.send(data);
+            xhr.onload = function () {
+                let res = JSON.parse(this.responseText);
+              
+              if(res.status == 1)
+              {
+                 alert(res.mess);
+                 location.reload();
+              }
+              else{
+                 alert(res.mess);
+              }
             }
+            xhr.send(data);
         }
-        window.onload = function () {
+        }
+        window.onload = function()
+        {
             check_login();
-            get_members();
+            get_room_feature_and_facilities_detail();
         }
-    </script>
+      </script>
 </body>
 
 </html>

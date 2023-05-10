@@ -18,22 +18,22 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="../css/common.css">
     <style>
-       
-        .availability-form{
+        .availability-form {
             margin-top: -50px;
             z-index: 2;
             position: relative;
         }
-        @media screen and (max-width: 575px){
-            .availability-form{
-            margin-top: 25px;
+
+        @media screen and (max-width: 575px) {
+            .availability-form {
+                margin-top: 25px;
                 padding: 0 35px;
-        }
+            }
         }
     </style>
 </head>
 
-<body class = "bg-light ">
+<body class="bg-light ">
     <nav class="navbar navbar-expand-lg navbar-light bg-white px-lg-3 py-lg-2 shadow-sm sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand me-5 fw-bold fs-3 h-font" href="/">N5 Hotel</a>
@@ -62,9 +62,9 @@
 
 
                 </ul>
-                <div class="d-flex">
+                <div class="d-flex" id="show-button">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-2" data-bs-toggle="modal"
+                    <!-- <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-2" data-bs-toggle="modal"
                         data-bs-target="#loginModal">
                         Login
                     </button>
@@ -72,6 +72,11 @@
                         data-bs-target="#registerModal">
                         Register
                     </button>
+
+                    <button type="button" class="btn btn-outline-dark shadow-none " data-bs-toggle="modal"
+                        data-bs-target="#registerModal">
+                        Register
+                    </button> -->
                 </div>
             </div>
         </div>
@@ -82,7 +87,7 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form>
+                <form method="POST" id="login_form">
                     <div class="modal-header">
                         <h5 class="modal-title d-flex align-items-center">
                             <i class="bi bi-person-circle fs-3 me-2"></i> User Login
@@ -93,17 +98,16 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Email address</label>
-                            <input type="email" class="form-control shadow-none">
+                            <input id="user_email" type="email" class="form-control shadow-none">
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label">Password</label>
-                            <input type="password" class="form-control shadow-none">
+                            <input id="user_password" type="password" class="form-control shadow-none">
                         </div>
 
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <button type="submit" class="btn btn-dark shadow-none">LOGIN</button>
-                            <a href="javascript: void(0)" class="text-secondary text-decoration-none">Fogot pasword</a>
                         </div>
                     </div>
 
@@ -118,7 +122,7 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <form>
+                <form id="register-form">
                     <div class="modal-header">
                         <h5 class="modal-title d-flex align-items-center">
                             <i class="bi bi-person-lines-fill fs-3 me-2"></i> User Registration
@@ -137,39 +141,42 @@
                             <div class="row">
                                 <div class="col-md-6 ps-0 mb-3">
                                     <label class="form-label">Name</label>
-                                    <input type="text" class="form-control shadow-none">
+                                    <input name="name" type="text" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 p-0 mb-3">
                                     <label class="form-label">Email</label>
-                                    <input type="email" class="form-control shadow-none">
+                                    <input name="email" type="email" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 ps-0 mb-3">
                                     <label class="form-label">Phone number</label>
-                                    <input type="number" class="form-control shadow-none">
+                                    <input name="phone" type="number" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 p-0 mb-3">
                                     <label class="form-label">Picture</label>
-                                    <input type="file" class="form-control shadow-none">
+                                    <input name="profile" type="file" accept=".jpg, .jpeg, .png, .webp"
+                                        class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-12 p-0 mb-3">
                                     <label class="form-label">Address</label>
-                                    <textarea class="form-control shadow-none" rows="1"></textarea>
+                                    <textarea name="address" class="form-control shadow-none" rows="1"
+                                        required></textarea>
                                 </div>
                                 <div class="col-md-6 ps-0 mb-3">
                                     <label class="form-label">Identification</label>
-                                    <input type="number" class="form-control shadow-none">
+                                    <input name="identification" type="number" class="form-control shadow-none"
+                                        required>
                                 </div>
                                 <div class="col-md-6 p-0 mb-3">
                                     <label class="form-label">Date of birth</label>
-                                    <input type="date" class="form-control shadow-none">
+                                    <input name="dob" type="date" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 ps-0 mb-3">
                                     <label class="form-label">Password</label>
-                                    <input type="password" class="form-control shadow-none">
+                                    <input name="pass" type="password" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 p-0 mb-3">
                                     <label class="form-label">Confirm password</label>
-                                    <input type="password" class="form-control shadow-none">
+                                    <input name="cpass" type="password" class="form-control shadow-none" required>
                                 </div>
                             </div>
 
@@ -200,12 +207,12 @@
     <div class="my-5 px-4">
         <h2 class="fw-bold h-font text-center">OUR ROOMS</h2>
         <div class="h-line bg-dark"></div>
-    
+
     </div>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-    
-            <div class="col-lg-3 col-md-12 mb-lg-0 mb-4 px-0 px-lg-0">
+
+            <div class="col-lg-3 col-md-12 mb-lg-0 mb-4 ps-4">
                 <nav class="navbar navbar-expand-lg navbar-light bg-white rounded shadow">
                     <div class="container-fluid flex-lg-column align-items-lg-stretch">
                         <h4 class="mt-4">FILTERS</h4>
@@ -236,14 +243,14 @@
                                     <div class="mb-2">
                                         <input type="checkbox" id="f2" class="form-check-input shadow-none mb-3 me-1">
                                         <label class="form-check-label" for="f2">Facility two</label>
-    
+
                                     </div>
                                     <div class="mb-2">
                                         <input type="checkbox" id="f3" class="form-check-input shadow-none mb-3 me-1">
                                         <label class="form-check-label" for="f3">Facility three</label>
-    
+
                                     </div>
-    
+
                                 </div>
                             </div>
                             <div class="collapse navbar-collapse" id="filterDropdown">
@@ -265,185 +272,9 @@
                     </div>
                 </nav>
             </div>
-    
-            <div class="col-lg-9 col-md-12 px-4">
-                <div class="card mb-4 border-0 shadow">
-                    <div class="row g-0 p-3 align-items-center">
-                        <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
-                            <img src="images/rooms/1.jpg" class="img-fluid rounded">
-                        </div>
-                        <div class="col-md-5 px-lg-3 px-md-3 px-0">
-                            <h5 class="mb-3">Simple Room Name</h5>
-                            <div class="features mb-3">
-    
-                                <h6 class="mb-1">Features</h6>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    2 rooms
-    
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    2 Bathroom
-    
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    1 Balcony
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    3 sofa
-                                </span>
-                            </div>
-                            <div class="facilities mb-3">
-                                <h6 class="mb-1">Facilities</h6>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    Wifi
-    
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    Television
-    
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    AC
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    Room heater
-                                </span>
-                            </div>
-                            <div class="guests">
-                                <h6 class="mb-1">Guests</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    5 adults
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    4 Children
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-2    mt-lg-0 mt-md-0 mt-4 text-align-center">
-                            <h6 class="mb-4">$200 per night</h6>
-                            <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book now</a>
-                            <a href="#" class="btn btn-sm w-100 btn-outline-dark shadow-none">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mb-4 border-0 shadow">
-                    <div class="row g-0 p-3 align-items-center">
-                        <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
-                            <img src="images/rooms/1.jpg" class="img-fluid rounded">
-                        </div>
-                        <div class="col-md-5 px-lg-3 px-md-3 px-0">
-                            <h5 class="mb-3">Simple Room Name</h5>
-                            <div class="features mb-3">
-    
-                                <h6 class="mb-1">Features</h6>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    2 rooms
-    
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    2 Bathroom
-    
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    1 Balcony
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    3 sofa
-                                </span>
-                            </div>
-                            <div class="facilities mb-3">
-                                <h6 class="mb-1">Facilities</h6>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    Wifi
-    
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    Television
-    
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    AC
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    Room heater
-                                </span>
-                            </div>
-                            <div class="guests">
-                                <h6 class="mb-1">Guests</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    5 adults
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    4 Children
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-2 text-align-center">
-                            <h6 class="mb-4">$200 per night</h6>
-                            <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book now</a>
-                            <a href="#" class="btn btn-sm w-100 btn-outline-dark shadow-none">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mb-4 border-0 shadow">
-                    <div class="row g-0 p-3 align-items-center">
-                        <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
-                            <img src="images/rooms/1.jpg" class="img-fluid rounded">
-                        </div>
-                        <div class="col-md-5 px-lg-3 px-md-3 px-0">
-                            <h5 class="mb-3">Simple Room Name</h5>
-                            <div class="features mb-3">
-    
-                                <h6 class="mb-1">Features</h6>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    2 rooms
-    
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    2 Bathroom
-    
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    1 Balcony
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    3 sofa
-                                </span>
-                            </div>
-                            <div class="facilities mb-3">
-                                <h6 class="mb-1">Facilities</h6>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    Wifi
-    
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    Television
-    
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    AC
-                                </span>
-                                <span class="badge bg-light text-dark text-wrap">
-                                    Room heater
-                                </span>
-                            </div>
-                            <div class="guests">
-                                <h6 class="mb-1">Guests</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    5 adults
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    4 Children
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-2 text-align-center">
-                            <h6 class="mb-4">$200 per night</h6>
-                            <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book now</a>
-                            <a href="#" class="btn btn-sm w-100 btn-outline-dark shadow-none">More Details</a>
-                        </div>
-                    </div>
-                </div>
+
+            <div class="col-lg-9 col-md-12 px-4" id="show-room">
+
             </div>
         </div>
     </div>
@@ -455,7 +286,9 @@
                     N5 Hotel
                 </h3>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ab alias beatae placeat vero quam animi ipsam. Repellat delectus pariatur vitae magnam? Quisquam, consequuntur est aperiam dicta quaerat porro ipsum?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ab alias beatae placeat vero quam
+                    animi ipsam. Repellat delectus pariatur vitae magnam? Quisquam, consequuntur est aperiam dicta
+                    quaerat porro ipsum?
                 </p>
             </div>
 
@@ -504,32 +337,222 @@
         var swiper = new Swiper(".swiper-container", {
             spaceBetween: 30,
             effect: "fade",
-            loop:true,
-            autoplay:{
-                delay:3500,
-                disableOnInteraction:false,
+            loop: true,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
             }
-            
+
         });
     </script>
     <script>
         var swiper = new Swiper(".swiper-testimonials", {
-          effect: "coverflow",
-          grabCursor: true,
-          centeredSlides: true,
-          slidesPerView: "auto",
-          coverflowEffect: {
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-          },
-          pagination: {
-            el: ".swiper-pagination",
-          },
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+            },
         });
-      </script>
+    </script>
+    <script>
+        function get_room_feature_and_facilities() {
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:8080/get-room-feature-and-facilities")
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = function () {
+                let res = JSON.parse(this.responseText);
+                document.getElementById("show-room").innerHTML = "";
+                res.forEach(item => {
+                    let featuresHtml = "";
+                    let features = item.listFeatures;
+                    features.forEach(feature => {
+                        featuresHtml += '<span class="badge bg-light text-dark text-wrap">' + feature.name + '</span>'
+                    })
+                    let facilitiesHtml = "";
+                    let facilities = item.listFacilities;
+                    facilities.forEach(facility => {
+                        facilitiesHtml += '<span class="badge bg-light text-dark text-wrap">' + facility.name + '</span>'
+                    })
+                    let htmlString = `
+                    <div class="card mb-4 border-0 shadow">
+                    <div class="row g-0 p-3 align-items-center">
+                        <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
+                            <img src="http://localhost:8080/getimage/${item.room_images.image}" class="img-fluid rounded">
+                        </div>
+                        <div class="col-md-5 px-lg-3 px-md-3 px-0">
+                            <h5 class="mb-3">${item.room.name}</h5>
+                            <div class="features mb-3" >
+                                <h6 class="mb-1">Features</h6>
+                                ${featuresHtml}
+                            </div>
+                            <div class="facilities mb-3">
+                                <h6 class="mb-1">Facilities</h6>
+                                ${facilitiesHtml}
+                            </div>
+                            <div class="guests">
+                                <h6 class="mb-1">Guests</h6>
+                                <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                    ${item.room.adult} adults
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                    ${item.room.children} Children
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-2    mt-lg-0 mt-md-0 mt-4 text-align-center">
+                            <h6 class="mb-4">$${item.room.price}per night</h6>
+                            <a onclick="CheckIfLogin(${item.room.id})" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book now</a>
+                            <a href="/room-detail?id=${item.room.id}" class="btn btn-sm w-100 btn-outline-dark shadow-none">More Details</a>
+                        </div>
+                    </div>
+                </div>
+                    `;
+                    document.getElementById("show-room").innerHTML += htmlString;
+                })
+            }
+            xhr.send();
+        }
+        let login_form = document.getElementById("login_form");
+        login_form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            login();
+        });
+        function login() {
+            let email = document.getElementById("user_email").value;
+            let password = document.getElementById("user_password").value;
+            data = {
+                id: "",
+                name: "",
+                email: email,
+                image: "",
+                phone: "",
+                identification: "",
+                dob: "",
+                password: password,
+                address: ""
+            };
+            console.log(JSON.stringify(data));
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8080/login", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onload = function () {
+                let res = JSON.parse(this.responseText);
+                if (res.status == 1) {
+                    document.cookie = "isUser=" + email + ";max-age=86400;path=/";
+                    location.reload();
+                }
+                alert(res.mess);
+            }
+            xhr.send(JSON.stringify(data));
+        }
+
+        function checkCookie(cookieName) {
+            var cookies = document.cookie.split(';'); // Get all cookies as an array
+
+            // Loop through the cookies to find the desired one
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim(); // Remove leading/trailing whitespace
+
+                // Check if the cookie starts with the desired name
+                if (cookie.indexOf(cookieName + '=') === 0) {
+                    return true; // Cookie exists
+                }
+            }
+
+            return false; // Cookie does not exist
+        }
+        function check_login() {
+            var cookieExists = checkCookie('isUser');
+            document.getElementById("show-button").innerHTML = "";
+            console.log(cookieExists);
+            if (cookieExists) {
+                document.getElementById("show-button").innerHTML += `
+                    <button type="button" class="btn btn-outline-dark shadow-none " onclick="logout('isUser')">
+                        Logout
+                    </button>
+                    `;
+            }
+            else {
+                document.getElementById("show-button").innerHTML += `
+                    <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-2" data-bs-toggle="modal"
+                        data-bs-target="#loginModal">
+                        Login
+                    </button>
+                    <button type="button" class="btn btn-outline-dark shadow-none " data-bs-toggle="modal"
+                        data-bs-target="#registerModal">
+                        Register
+                    </button>
+                    `;
+
+            }
+        }
+        function logout(cookieName) {
+            document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            location.reload();
+        }
+        let register_form = document.getElementById('register-form');
+
+        register_form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            register();
+        });
+        function register() {
+            if (register_form.elements['pass'].value != register_form.elements['cpass'].value) {
+                alert("Your password confirmation is incorrect");
+            }
+            else {
+                let data = new FormData();
+                data.append('name', register_form.elements['name'].value);
+                data.append('email', register_form.elements['email'].value);
+                data.append('phone', register_form.elements['phone'].value);
+                data.append('profile', register_form.elements['profile'].files[0]);
+                data.append('address', register_form.elements['address'].value);
+                data.append('identification', register_form.elements['identification'].value);
+                data.append('dob', register_form.elements['dob'].value);
+                data.append('pass', register_form.elements['pass'].value);
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "http://localhost:8080/register", true);
+
+                xhr.onload = function () {
+                    let res = JSON.parse(this.responseText);
+
+                    if (res.status == 1) {
+                        alert(res.mess);
+                        location.reload();
+                    }
+                    else {
+                        alert(res.mess);
+                    }
+                }
+                xhr.send(data);
+            }
+        }
+        function CheckIfLogin(room_id)
+        {
+            var cookieExists = checkCookie('isUser');
+            console.log(cookieExists);
+            if (cookieExists) {
+                window.location.href = "http://localhost:3000/confirm-booking?id="+room_id;
+            }
+            else {
+                alert("You need to login first!");
+            }
+        }
+        window.onload = function () {
+            check_login();
+            get_room_feature_and_facilities();
+        }
+    </script>
 </body>
 
 </html>
